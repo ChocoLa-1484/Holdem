@@ -7,7 +7,10 @@
 
 import SwiftUI
 import Foundation
-import Firebase
+import FirebaseFirestore
+import FirebaseFirestoreSwift
+
+let db = Firestore.firestore()
 
 struct Deck {
     var cards: [Card] = []
@@ -32,17 +35,19 @@ struct Deck {
             return nil
         }
     }
-    
-    func saveDeck(deck: [Card]) {
-        let ref = Database.database().reference().child("deck")
-        var cardsData: [[String: String]] = []
-        for card in deck {
-            let cardData: [String: String] = [
-                "suit": Card.suit,
-                "rank": Card.rank
-            ]
-            cardsData.append(cardData)
-        }
-        ref.setValue(cardsData)
+}
+
+func saveDeck(deck: Deck) {
+    let deckRef = db.collection("deck").document()
+    var cardsData: [[String: Int]] = []
+    for card in deck.cards {
+        let cardData: [String: Int] = [
+            "suit": card.suit.rawValue,
+            "rank": card.rank.rawValue
+        ]
+        cardsData.append(cardData)
     }
+    deckRef.setData([
+        "cards": cardsData
+    ])
 }

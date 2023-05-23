@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9C82BE1A2A1CC13A001C36C0 /* 	.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BDF22A1CC139001C36C0 /* 	.swift */; };
-		9C82BE1B2A1CC13A001C36C0 /* 	.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BDF22A1CC139001C36C0 /* 	.swift */; };
+		9C82BE1A2A1CC13A001C36C0 /* HoldemApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BDF22A1CC139001C36C0 /* HoldemApp.swift */; };
 		9C82BE1E2A1CC13A001C36C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C82BDF42A1CC13A001C36C0 /* Assets.xcassets */; };
 		9C82BE1F2A1CC13A001C36C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C82BDF42A1CC13A001C36C0 /* Assets.xcassets */; };
 		9C82BE2F2A1CC20F001C36C0 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BE2E2A1CC20F001C36C0 /* Player.swift */; };
@@ -41,7 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9C82BDF22A1CC139001C36C0 /* 	.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "\t.swift"; sourceTree = "<group>"; };
+		9C82BDF22A1CC139001C36C0 /* HoldemApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoldemApp.swift; sourceTree = "<group>"; };
 		9C82BDF42A1CC13A001C36C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9C82BDF92A1CC13A001C36C0 /* Holdem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Holdem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C82BDFF2A1CC13A001C36C0 /* Holdem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Holdem.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,15 +101,12 @@
 		9C82BDF12A1CC139001C36C0 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				9C82BE452A1CFD89001C36C0 /* Model */,
+				9C82BE442A1CFC80001C36C0 /* View */,
+				9C82BE432A1CFC6F001C36C0 /* ViewModel */,
 				9C82BE342A1CC691001C36C0 /* GoogleService-Info.plist */,
-				9C82BE322A1CC241001C36C0 /* Deck.swift */,
-				9C82BE302A1CC221001C36C0 /* Card.swift */,
 				9C82BE2E2A1CC20F001C36C0 /* Player.swift */,
-				9C82BDF22A1CC139001C36C0 /* 	.swift */,
 				9C82BDF42A1CC13A001C36C0 /* Assets.xcassets */,
-				9C82BE3D2A1CCC32001C36C0 /* MainView.swift */,
-				9C82BE3F2A1CF0C4001C36C0 /* MainViewModel.swift */,
-				9C82BE412A1CF11C001C36C0 /* CardView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -124,6 +120,33 @@
 				9C82BE122A1CC13A001C36C0 /* Tests macOS.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		9C82BE432A1CFC6F001C36C0 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9C82BE3F2A1CF0C4001C36C0 /* MainViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		9C82BE442A1CFC80001C36C0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9C82BDF22A1CC139001C36C0 /* HoldemApp.swift */,
+				9C82BE3D2A1CCC32001C36C0 /* MainView.swift */,
+				9C82BE412A1CF11C001C36C0 /* CardView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9C82BE452A1CFD89001C36C0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9C82BE302A1CC221001C36C0 /* Card.swift */,
+				9C82BE322A1CC241001C36C0 /* Deck.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,7 +321,7 @@
 				9C82BE2F2A1CC20F001C36C0 /* Player.swift in Sources */,
 				9C82BE312A1CC221001C36C0 /* Card.swift in Sources */,
 				9C82BE3E2A1CCC32001C36C0 /* MainView.swift in Sources */,
-				9C82BE1A2A1CC13A001C36C0 /* 	.swift in Sources */,
+				9C82BE1A2A1CC13A001C36C0 /* HoldemApp.swift in Sources */,
 				9C82BE402A1CF0C4001C36C0 /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -307,7 +330,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C82BE1B2A1CC13A001C36C0 /* 	.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -623,7 +645,6 @@
 		9C82BE2C2A1CC13A001C36C0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -648,7 +669,6 @@
 		9C82BE2D2A1CC13A001C36C0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
