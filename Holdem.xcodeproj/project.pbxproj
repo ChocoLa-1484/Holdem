@@ -1,0 +1,730 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9C82BE0B2A1CC13A001C36C0 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BE0A2A1CC13A001C36C0 /* Tests_iOS.swift */; };
+		9C82BE0D2A1CC13A001C36C0 /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BE0C2A1CC13A001C36C0 /* Tests_iOSLaunchTests.swift */; };
+		9C82BE172A1CC13A001C36C0 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BE162A1CC13A001C36C0 /* Tests_macOS.swift */; };
+		9C82BE192A1CC13A001C36C0 /* Tests_macOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BE182A1CC13A001C36C0 /* Tests_macOSLaunchTests.swift */; };
+		9C82BE1A2A1CC13A001C36C0 /* HoldemApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BDF22A1CC139001C36C0 /* HoldemApp.swift */; };
+		9C82BE1B2A1CC13A001C36C0 /* HoldemApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BDF22A1CC139001C36C0 /* HoldemApp.swift */; };
+		9C82BE1C2A1CC13A001C36C0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BDF32A1CC139001C36C0 /* ContentView.swift */; };
+		9C82BE1D2A1CC13A001C36C0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BDF32A1CC139001C36C0 /* ContentView.swift */; };
+		9C82BE1E2A1CC13A001C36C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C82BDF42A1CC13A001C36C0 /* Assets.xcassets */; };
+		9C82BE1F2A1CC13A001C36C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C82BDF42A1CC13A001C36C0 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9C82BE072A1CC13A001C36C0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9C82BDED2A1CC139001C36C0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9C82BDF82A1CC13A001C36C0;
+			remoteInfo = "Holdem (iOS)";
+		};
+		9C82BE132A1CC13A001C36C0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9C82BDED2A1CC139001C36C0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9C82BDFE2A1CC13A001C36C0;
+			remoteInfo = "Holdem (macOS)";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		9C82BDF22A1CC139001C36C0 /* HoldemApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoldemApp.swift; sourceTree = "<group>"; };
+		9C82BDF32A1CC139001C36C0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		9C82BDF42A1CC13A001C36C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9C82BDF92A1CC13A001C36C0 /* Holdem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Holdem.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C82BDFF2A1CC13A001C36C0 /* Holdem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Holdem.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C82BE012A1CC13A001C36C0 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		9C82BE062A1CC13A001C36C0 /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C82BE0A2A1CC13A001C36C0 /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
+		9C82BE0C2A1CC13A001C36C0 /* Tests_iOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOSLaunchTests.swift; sourceTree = "<group>"; };
+		9C82BE122A1CC13A001C36C0 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C82BE162A1CC13A001C36C0 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
+		9C82BE182A1CC13A001C36C0 /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9C82BDF62A1CC13A001C36C0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9C82BDFC2A1CC13A001C36C0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9C82BE032A1CC13A001C36C0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9C82BE0F2A1CC13A001C36C0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9C82BDEC2A1CC139001C36C0 = {
+			isa = PBXGroup;
+			children = (
+				9C82BDF12A1CC139001C36C0 /* Shared */,
+				9C82BE002A1CC13A001C36C0 /* macOS */,
+				9C82BE092A1CC13A001C36C0 /* Tests iOS */,
+				9C82BE152A1CC13A001C36C0 /* Tests macOS */,
+				9C82BDFA2A1CC13A001C36C0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9C82BDF12A1CC139001C36C0 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				9C82BDF22A1CC139001C36C0 /* HoldemApp.swift */,
+				9C82BDF32A1CC139001C36C0 /* ContentView.swift */,
+				9C82BDF42A1CC13A001C36C0 /* Assets.xcassets */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		9C82BDFA2A1CC13A001C36C0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9C82BDF92A1CC13A001C36C0 /* Holdem.app */,
+				9C82BDFF2A1CC13A001C36C0 /* Holdem.app */,
+				9C82BE062A1CC13A001C36C0 /* Tests iOS.xctest */,
+				9C82BE122A1CC13A001C36C0 /* Tests macOS.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9C82BE002A1CC13A001C36C0 /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				9C82BE012A1CC13A001C36C0 /* macOS.entitlements */,
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
+		9C82BE092A1CC13A001C36C0 /* Tests iOS */ = {
+			isa = PBXGroup;
+			children = (
+				9C82BE0A2A1CC13A001C36C0 /* Tests_iOS.swift */,
+				9C82BE0C2A1CC13A001C36C0 /* Tests_iOSLaunchTests.swift */,
+			);
+			path = "Tests iOS";
+			sourceTree = "<group>";
+		};
+		9C82BE152A1CC13A001C36C0 /* Tests macOS */ = {
+			isa = PBXGroup;
+			children = (
+				9C82BE162A1CC13A001C36C0 /* Tests_macOS.swift */,
+				9C82BE182A1CC13A001C36C0 /* Tests_macOSLaunchTests.swift */,
+			);
+			path = "Tests macOS";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9C82BDF82A1CC13A001C36C0 /* Holdem (iOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9C82BE222A1CC13A001C36C0 /* Build configuration list for PBXNativeTarget "Holdem (iOS)" */;
+			buildPhases = (
+				9C82BDF52A1CC13A001C36C0 /* Sources */,
+				9C82BDF62A1CC13A001C36C0 /* Frameworks */,
+				9C82BDF72A1CC13A001C36C0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Holdem (iOS)";
+			productName = "Holdem (iOS)";
+			productReference = 9C82BDF92A1CC13A001C36C0 /* Holdem.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9C82BDFE2A1CC13A001C36C0 /* Holdem (macOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9C82BE252A1CC13A001C36C0 /* Build configuration list for PBXNativeTarget "Holdem (macOS)" */;
+			buildPhases = (
+				9C82BDFB2A1CC13A001C36C0 /* Sources */,
+				9C82BDFC2A1CC13A001C36C0 /* Frameworks */,
+				9C82BDFD2A1CC13A001C36C0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Holdem (macOS)";
+			productName = "Holdem (macOS)";
+			productReference = 9C82BDFF2A1CC13A001C36C0 /* Holdem.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9C82BE052A1CC13A001C36C0 /* Tests iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9C82BE282A1CC13A001C36C0 /* Build configuration list for PBXNativeTarget "Tests iOS" */;
+			buildPhases = (
+				9C82BE022A1CC13A001C36C0 /* Sources */,
+				9C82BE032A1CC13A001C36C0 /* Frameworks */,
+				9C82BE042A1CC13A001C36C0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9C82BE082A1CC13A001C36C0 /* PBXTargetDependency */,
+			);
+			name = "Tests iOS";
+			productName = "Tests iOS";
+			productReference = 9C82BE062A1CC13A001C36C0 /* Tests iOS.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		9C82BE112A1CC13A001C36C0 /* Tests macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9C82BE2B2A1CC13A001C36C0 /* Build configuration list for PBXNativeTarget "Tests macOS" */;
+			buildPhases = (
+				9C82BE0E2A1CC13A001C36C0 /* Sources */,
+				9C82BE0F2A1CC13A001C36C0 /* Frameworks */,
+				9C82BE102A1CC13A001C36C0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9C82BE142A1CC13A001C36C0 /* PBXTargetDependency */,
+			);
+			name = "Tests macOS";
+			productName = "Tests macOS";
+			productReference = 9C82BE122A1CC13A001C36C0 /* Tests macOS.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9C82BDED2A1CC139001C36C0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1300;
+				LastUpgradeCheck = 1300;
+				TargetAttributes = {
+					9C82BDF82A1CC13A001C36C0 = {
+						CreatedOnToolsVersion = 13.0;
+					};
+					9C82BDFE2A1CC13A001C36C0 = {
+						CreatedOnToolsVersion = 13.0;
+					};
+					9C82BE052A1CC13A001C36C0 = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = 9C82BDF82A1CC13A001C36C0;
+					};
+					9C82BE112A1CC13A001C36C0 = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = 9C82BDFE2A1CC13A001C36C0;
+					};
+				};
+			};
+			buildConfigurationList = 9C82BDF02A1CC139001C36C0 /* Build configuration list for PBXProject "Holdem" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9C82BDEC2A1CC139001C36C0;
+			productRefGroup = 9C82BDFA2A1CC13A001C36C0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9C82BDF82A1CC13A001C36C0 /* Holdem (iOS) */,
+				9C82BDFE2A1CC13A001C36C0 /* Holdem (macOS) */,
+				9C82BE052A1CC13A001C36C0 /* Tests iOS */,
+				9C82BE112A1CC13A001C36C0 /* Tests macOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9C82BDF72A1CC13A001C36C0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9C82BE1E2A1CC13A001C36C0 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9C82BDFD2A1CC13A001C36C0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9C82BE1F2A1CC13A001C36C0 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9C82BE042A1CC13A001C36C0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9C82BE102A1CC13A001C36C0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9C82BDF52A1CC13A001C36C0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9C82BE1C2A1CC13A001C36C0 /* ContentView.swift in Sources */,
+				9C82BE1A2A1CC13A001C36C0 /* HoldemApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9C82BDFB2A1CC13A001C36C0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9C82BE1D2A1CC13A001C36C0 /* ContentView.swift in Sources */,
+				9C82BE1B2A1CC13A001C36C0 /* HoldemApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9C82BE022A1CC13A001C36C0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9C82BE0D2A1CC13A001C36C0 /* Tests_iOSLaunchTests.swift in Sources */,
+				9C82BE0B2A1CC13A001C36C0 /* Tests_iOS.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9C82BE0E2A1CC13A001C36C0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9C82BE192A1CC13A001C36C0 /* Tests_macOSLaunchTests.swift in Sources */,
+				9C82BE172A1CC13A001C36C0 /* Tests_macOS.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9C82BE082A1CC13A001C36C0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9C82BDF82A1CC13A001C36C0 /* Holdem (iOS) */;
+			targetProxy = 9C82BE072A1CC13A001C36C0 /* PBXContainerItemProxy */;
+		};
+		9C82BE142A1CC13A001C36C0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9C82BDFE2A1CC13A001C36C0 /* Holdem (macOS) */;
+			targetProxy = 9C82BE132A1CC13A001C36C0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		9C82BE202A1CC13A001C36C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		9C82BE212A1CC13A001C36C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		9C82BE232A1CC13A001C36C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 66LAS5YM4V;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.leo.Holdem;
+				PRODUCT_NAME = Holdem;
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9C82BE242A1CC13A001C36C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 66LAS5YM4V;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.leo.Holdem;
+				PRODUCT_NAME = Holdem;
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9C82BE262A1CC13A001C36C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 66LAS5YM4V;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.leo.Holdem;
+				PRODUCT_NAME = Holdem;
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		9C82BE272A1CC13A001C36C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 66LAS5YM4V;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.leo.Holdem;
+				PRODUCT_NAME = Holdem;
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		9C82BE292A1CC13A001C36C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 66LAS5YM4V;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.leo.Tests-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Holdem (iOS)";
+			};
+			name = Debug;
+		};
+		9C82BE2A2A1CC13A001C36C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 66LAS5YM4V;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.leo.Tests-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Holdem (iOS)";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9C82BE2C2A1CC13A001C36C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 66LAS5YM4V;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.leo.Tests-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "Holdem (macOS)";
+			};
+			name = Debug;
+		};
+		9C82BE2D2A1CC13A001C36C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 66LAS5YM4V;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.leo.Tests-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "Holdem (macOS)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9C82BDF02A1CC139001C36C0 /* Build configuration list for PBXProject "Holdem" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9C82BE202A1CC13A001C36C0 /* Debug */,
+				9C82BE212A1CC13A001C36C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9C82BE222A1CC13A001C36C0 /* Build configuration list for PBXNativeTarget "Holdem (iOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9C82BE232A1CC13A001C36C0 /* Debug */,
+				9C82BE242A1CC13A001C36C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9C82BE252A1CC13A001C36C0 /* Build configuration list for PBXNativeTarget "Holdem (macOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9C82BE262A1CC13A001C36C0 /* Debug */,
+				9C82BE272A1CC13A001C36C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9C82BE282A1CC13A001C36C0 /* Build configuration list for PBXNativeTarget "Tests iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9C82BE292A1CC13A001C36C0 /* Debug */,
+				9C82BE2A2A1CC13A001C36C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9C82BE2B2A1CC13A001C36C0 /* Build configuration list for PBXNativeTarget "Tests macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9C82BE2C2A1CC13A001C36C0 /* Debug */,
+				9C82BE2D2A1CC13A001C36C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9C82BDED2A1CC139001C36C0 /* Project object */;
+}
