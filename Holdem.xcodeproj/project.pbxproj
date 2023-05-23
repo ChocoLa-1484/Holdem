@@ -7,16 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9C82BE0B2A1CC13A001C36C0 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BE0A2A1CC13A001C36C0 /* Tests_iOS.swift */; };
-		9C82BE0D2A1CC13A001C36C0 /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BE0C2A1CC13A001C36C0 /* Tests_iOSLaunchTests.swift */; };
-		9C82BE172A1CC13A001C36C0 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BE162A1CC13A001C36C0 /* Tests_macOS.swift */; };
-		9C82BE192A1CC13A001C36C0 /* Tests_macOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BE182A1CC13A001C36C0 /* Tests_macOSLaunchTests.swift */; };
-		9C82BE1A2A1CC13A001C36C0 /* HoldemApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BDF22A1CC139001C36C0 /* HoldemApp.swift */; };
-		9C82BE1B2A1CC13A001C36C0 /* HoldemApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BDF22A1CC139001C36C0 /* HoldemApp.swift */; };
-		9C82BE1C2A1CC13A001C36C0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BDF32A1CC139001C36C0 /* ContentView.swift */; };
-		9C82BE1D2A1CC13A001C36C0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BDF32A1CC139001C36C0 /* ContentView.swift */; };
+		9C82BE1A2A1CC13A001C36C0 /* 	.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BDF22A1CC139001C36C0 /* 	.swift */; };
+		9C82BE1B2A1CC13A001C36C0 /* 	.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BDF22A1CC139001C36C0 /* 	.swift */; };
 		9C82BE1E2A1CC13A001C36C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C82BDF42A1CC13A001C36C0 /* Assets.xcassets */; };
 		9C82BE1F2A1CC13A001C36C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C82BDF42A1CC13A001C36C0 /* Assets.xcassets */; };
+		9C82BE2F2A1CC20F001C36C0 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BE2E2A1CC20F001C36C0 /* Player.swift */; };
+		9C82BE312A1CC221001C36C0 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BE302A1CC221001C36C0 /* Card.swift */; };
+		9C82BE332A1CC241001C36C0 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BE322A1CC241001C36C0 /* Deck.swift */; };
+		9C82BE352A1CC691001C36C0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C82BE342A1CC691001C36C0 /* GoogleService-Info.plist */; };
+		9C82BE382A1CCBB5001C36C0 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 9C82BE372A1CCBB5001C36C0 /* FirebaseAuth */; };
+		9C82BE3A2A1CCBB5001C36C0 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 9C82BE392A1CCBB5001C36C0 /* FirebaseFirestoreSwift-Beta */; };
+		9C82BE3C2A1CCBB5001C36C0 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 9C82BE3B2A1CCBB5001C36C0 /* FirebaseStorage */; };
+		9C82BE3E2A1CCC32001C36C0 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BE3D2A1CCC32001C36C0 /* MainView.swift */; };
+		9C82BE402A1CF0C4001C36C0 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BE3F2A1CF0C4001C36C0 /* MainViewModel.swift */; };
+		9C82BE422A1CF11C001C36C0 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BE412A1CF11C001C36C0 /* CardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,18 +41,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9C82BDF22A1CC139001C36C0 /* HoldemApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoldemApp.swift; sourceTree = "<group>"; };
-		9C82BDF32A1CC139001C36C0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		9C82BDF22A1CC139001C36C0 /* 	.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "\t.swift"; sourceTree = "<group>"; };
 		9C82BDF42A1CC13A001C36C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9C82BDF92A1CC13A001C36C0 /* Holdem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Holdem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C82BDFF2A1CC13A001C36C0 /* Holdem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Holdem.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		9C82BE012A1CC13A001C36C0 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		9C82BE062A1CC13A001C36C0 /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9C82BE0A2A1CC13A001C36C0 /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
-		9C82BE0C2A1CC13A001C36C0 /* Tests_iOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOSLaunchTests.swift; sourceTree = "<group>"; };
 		9C82BE122A1CC13A001C36C0 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9C82BE162A1CC13A001C36C0 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
-		9C82BE182A1CC13A001C36C0 /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
+		9C82BE2E2A1CC20F001C36C0 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		9C82BE302A1CC221001C36C0 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		9C82BE322A1CC241001C36C0 /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
+		9C82BE342A1CC691001C36C0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9C82BE3D2A1CCC32001C36C0 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		9C82BE3F2A1CF0C4001C36C0 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		9C82BE412A1CF11C001C36C0 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +61,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C82BE382A1CCBB5001C36C0 /* FirebaseAuth in Frameworks */,
+				9C82BE3A2A1CCBB5001C36C0 /* FirebaseFirestoreSwift-Beta in Frameworks */,
+				9C82BE3C2A1CCBB5001C36C0 /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,9 +95,6 @@
 			isa = PBXGroup;
 			children = (
 				9C82BDF12A1CC139001C36C0 /* Shared */,
-				9C82BE002A1CC13A001C36C0 /* macOS */,
-				9C82BE092A1CC13A001C36C0 /* Tests iOS */,
-				9C82BE152A1CC13A001C36C0 /* Tests macOS */,
 				9C82BDFA2A1CC13A001C36C0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -97,9 +102,15 @@
 		9C82BDF12A1CC139001C36C0 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				9C82BDF22A1CC139001C36C0 /* HoldemApp.swift */,
-				9C82BDF32A1CC139001C36C0 /* ContentView.swift */,
+				9C82BE342A1CC691001C36C0 /* GoogleService-Info.plist */,
+				9C82BE322A1CC241001C36C0 /* Deck.swift */,
+				9C82BE302A1CC221001C36C0 /* Card.swift */,
+				9C82BE2E2A1CC20F001C36C0 /* Player.swift */,
+				9C82BDF22A1CC139001C36C0 /* 	.swift */,
 				9C82BDF42A1CC13A001C36C0 /* Assets.xcassets */,
+				9C82BE3D2A1CCC32001C36C0 /* MainView.swift */,
+				9C82BE3F2A1CF0C4001C36C0 /* MainViewModel.swift */,
+				9C82BE412A1CF11C001C36C0 /* CardView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -113,32 +124,6 @@
 				9C82BE122A1CC13A001C36C0 /* Tests macOS.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		9C82BE002A1CC13A001C36C0 /* macOS */ = {
-			isa = PBXGroup;
-			children = (
-				9C82BE012A1CC13A001C36C0 /* macOS.entitlements */,
-			);
-			path = macOS;
-			sourceTree = "<group>";
-		};
-		9C82BE092A1CC13A001C36C0 /* Tests iOS */ = {
-			isa = PBXGroup;
-			children = (
-				9C82BE0A2A1CC13A001C36C0 /* Tests_iOS.swift */,
-				9C82BE0C2A1CC13A001C36C0 /* Tests_iOSLaunchTests.swift */,
-			);
-			path = "Tests iOS";
-			sourceTree = "<group>";
-		};
-		9C82BE152A1CC13A001C36C0 /* Tests macOS */ = {
-			isa = PBXGroup;
-			children = (
-				9C82BE162A1CC13A001C36C0 /* Tests_macOS.swift */,
-				9C82BE182A1CC13A001C36C0 /* Tests_macOSLaunchTests.swift */,
-			);
-			path = "Tests macOS";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,6 +142,11 @@
 			dependencies = (
 			);
 			name = "Holdem (iOS)";
+			packageProductDependencies = (
+				9C82BE372A1CCBB5001C36C0 /* FirebaseAuth */,
+				9C82BE392A1CCBB5001C36C0 /* FirebaseFirestoreSwift-Beta */,
+				9C82BE3B2A1CCBB5001C36C0 /* FirebaseStorage */,
+			);
 			productName = "Holdem (iOS)";
 			productReference = 9C82BDF92A1CC13A001C36C0 /* Holdem.app */;
 			productType = "com.apple.product-type.application";
@@ -249,6 +239,9 @@
 				Base,
 			);
 			mainGroup = 9C82BDEC2A1CC139001C36C0;
+			packageReferences = (
+				9C82BE362A1CCBB5001C36C0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 9C82BDFA2A1CC13A001C36C0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -267,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C82BE1E2A1CC13A001C36C0 /* Assets.xcassets in Resources */,
+				9C82BE352A1CC691001C36C0 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,8 +293,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C82BE1C2A1CC13A001C36C0 /* ContentView.swift in Sources */,
-				9C82BE1A2A1CC13A001C36C0 /* HoldemApp.swift in Sources */,
+				9C82BE422A1CF11C001C36C0 /* CardView.swift in Sources */,
+				9C82BE332A1CC241001C36C0 /* Deck.swift in Sources */,
+				9C82BE2F2A1CC20F001C36C0 /* Player.swift in Sources */,
+				9C82BE312A1CC221001C36C0 /* Card.swift in Sources */,
+				9C82BE3E2A1CCC32001C36C0 /* MainView.swift in Sources */,
+				9C82BE1A2A1CC13A001C36C0 /* 	.swift in Sources */,
+				9C82BE402A1CF0C4001C36C0 /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,8 +307,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C82BE1D2A1CC13A001C36C0 /* ContentView.swift in Sources */,
-				9C82BE1B2A1CC13A001C36C0 /* HoldemApp.swift in Sources */,
+				9C82BE1B2A1CC13A001C36C0 /* 	.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,8 +315,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C82BE0D2A1CC13A001C36C0 /* Tests_iOSLaunchTests.swift in Sources */,
-				9C82BE0B2A1CC13A001C36C0 /* Tests_iOS.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,8 +322,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C82BE192A1CC13A001C36C0 /* Tests_macOSLaunchTests.swift in Sources */,
-				9C82BE172A1CC13A001C36C0 /* Tests_macOS.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -725,6 +719,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9C82BE362A1CCBB5001C36C0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9C82BE372A1CCBB5001C36C0 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9C82BE362A1CCBB5001C36C0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		9C82BE392A1CCBB5001C36C0 /* FirebaseFirestoreSwift-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9C82BE362A1CCBB5001C36C0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseFirestoreSwift-Beta";
+		};
+		9C82BE3B2A1CCBB5001C36C0 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9C82BE362A1CCBB5001C36C0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9C82BDED2A1CC139001C36C0 /* Project object */;
 }
