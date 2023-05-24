@@ -15,7 +15,7 @@ struct HoldemApp: App {
     }
     var body: some Scene {
         WindowGroup {
-            MainView()
+            StartView()
         }
     }
 }

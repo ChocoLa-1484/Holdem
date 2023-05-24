@@ -7,12 +7,10 @@
 
 import SwiftUI
 import Foundation
-import FirebaseFirestore
+import FirebaseFirestoreSwift
 import FirebaseFirestoreSwift
 
-let db = Firestore.firestore()
-
-struct Deck {
+struct Deck: Codable {
     var cards: [Card] = []
     
     init() {

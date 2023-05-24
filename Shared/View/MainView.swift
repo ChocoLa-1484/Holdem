@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct MainView: View {
-    @StateObject private var gameViewModel = GameViewModel()
+    @StateObject private var mainViewModel = MainViewModel()
     var body: some View {
         Button {
-            gameViewModel.test()
+            mainViewModel.test()
         } label: {
             Text("GOGO")
         }
-        CardView(card: gameViewModel.playerCard, title: "Player 1")
+        CardView(card: mainViewModel.playerCard)
     }
 }
 

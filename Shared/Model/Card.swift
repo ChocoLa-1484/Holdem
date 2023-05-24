@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Card: Comparable {
+struct Card: Comparable, Codable {
     let suit: Suit
     let rank: Rank
 
@@ -18,18 +18,14 @@ struct Card: Comparable {
         return lhs.rank.rawValue < rhs.rank.rawValue
     }
 
-    static func == (lhs: Card, rhs: Card) -> Bool {
-        return lhs.rank == rhs.rank && lhs.suit == rhs.suit
-    }
-
-    enum Suit: Int, CaseIterable {
+    enum Suit: Int, CaseIterable, Codable {
         case clubs = 1
         case diamonds
         case hearts
         case spades
     }
 
-    enum Rank: Int, CaseIterable {
+    enum Rank: Int, CaseIterable, Codable {
         case two = 2
         case three
         case four

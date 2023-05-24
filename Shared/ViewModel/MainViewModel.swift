@@ -7,12 +7,8 @@
 
 import Foundation
 
-class GameViewModel: ObservableObject {
+class MainViewModel: ObservableObject {
     @Published var playerCard: Card?
-    @Published var computerCard: Card?
-    @Published var playerMoney: Int = 1000
-    @Published var showAlert: Bool = false
-    @Published var alertTitle: String = ""
     func test() {
         let deck = Deck()
         saveDeck(deck: deck)
