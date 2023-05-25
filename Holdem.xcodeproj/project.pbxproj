@@ -23,13 +23,14 @@
 		9C82BE492A1D0FC7001C36C0 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BE482A1D0FC7001C36C0 /* Player.swift */; };
 		9C82BE4B2A1D0FD7001C36C0 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BE4A2A1D0FD7001C36C0 /* Room.swift */; };
 		9C82BE4D2A1D0FED001C36C0 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BE4C2A1D0FED001C36C0 /* StartView.swift */; };
-		9C82BE4F2A1D1000001C36C0 /* StartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BE4E2A1D1000001C36C0 /* StartViewModel.swift */; };
 		9C82BE512A1D10C1001C36C0 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BE502A1D10C1001C36C0 /* RegisterView.swift */; };
 		9C82BE532A1E383D001C36C0 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BE522A1E383D001C36C0 /* RegisterViewModel.swift */; };
 		9C82BE552A1E3A0A001C36C0 /* LoggingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BE542A1E3A0A001C36C0 /* LoggingView.swift */; };
 		9C82BE572A1E3A26001C36C0 /* LoggingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BE562A1E3A26001C36C0 /* LoggingViewModel.swift */; };
-		9C82BE592A1E6191001C36C0 /* CreateRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BE582A1E6191001C36C0 /* CreateRoomView.swift */; };
+		9C82BE592A1E6191001C36C0 /* RoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BE582A1E6191001C36C0 /* RoomView.swift */; };
 		9C82BE5B2A1E61A0001C36C0 /* JoinRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BE5A2A1E61A0001C36C0 /* JoinRoomView.swift */; };
+		9C82BE5D2A1FAFA8001C36C0 /* RoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BE5C2A1FAFA8001C36C0 /* RoomViewModel.swift */; };
+		9C82BE642A1FC6E8001C36C0 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BE632A1FC6E8001C36C0 /* UserManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,13 +67,14 @@
 		9C82BE482A1D0FC7001C36C0 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		9C82BE4A2A1D0FD7001C36C0 /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		9C82BE4C2A1D0FED001C36C0 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
-		9C82BE4E2A1D1000001C36C0 /* StartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewModel.swift; sourceTree = "<group>"; };
 		9C82BE502A1D10C1001C36C0 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		9C82BE522A1E383D001C36C0 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		9C82BE542A1E3A0A001C36C0 /* LoggingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggingView.swift; sourceTree = "<group>"; };
 		9C82BE562A1E3A26001C36C0 /* LoggingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggingViewModel.swift; sourceTree = "<group>"; };
-		9C82BE582A1E6191001C36C0 /* CreateRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoomView.swift; sourceTree = "<group>"; };
+		9C82BE582A1E6191001C36C0 /* RoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomView.swift; sourceTree = "<group>"; };
 		9C82BE5A2A1E61A0001C36C0 /* JoinRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinRoomView.swift; sourceTree = "<group>"; };
+		9C82BE5C2A1FAFA8001C36C0 /* RoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewModel.swift; sourceTree = "<group>"; };
+		9C82BE632A1FC6E8001C36C0 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 		9C82BDF12A1CC139001C36C0 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				9C82BE622A1FC6D4001C36C0 /* Manager */,
 				9C82BE452A1CFD89001C36C0 /* Model */,
 				9C82BE442A1CFC80001C36C0 /* View */,
 				9C82BE432A1CFC6F001C36C0 /* ViewModel */,
@@ -145,9 +148,9 @@
 			isa = PBXGroup;
 			children = (
 				9C82BE3F2A1CF0C4001C36C0 /* MainViewModel.swift */,
-				9C82BE4E2A1D1000001C36C0 /* StartViewModel.swift */,
 				9C82BE522A1E383D001C36C0 /* RegisterViewModel.swift */,
 				9C82BE562A1E3A26001C36C0 /* LoggingViewModel.swift */,
+				9C82BE5C2A1FAFA8001C36C0 /* RoomViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -161,7 +164,7 @@
 				9C82BE4C2A1D0FED001C36C0 /* StartView.swift */,
 				9C82BE502A1D10C1001C36C0 /* RegisterView.swift */,
 				9C82BE542A1E3A0A001C36C0 /* LoggingView.swift */,
-				9C82BE582A1E6191001C36C0 /* CreateRoomView.swift */,
+				9C82BE582A1E6191001C36C0 /* RoomView.swift */,
 				9C82BE5A2A1E61A0001C36C0 /* JoinRoomView.swift */,
 			);
 			path = View;
@@ -177,6 +180,14 @@
 				9C82BE4A2A1D0FD7001C36C0 /* Room.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		9C82BE622A1FC6D4001C36C0 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				9C82BE632A1FC6E8001C36C0 /* UserManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -348,7 +359,7 @@
 			files = (
 				9C82BE422A1CF11C001C36C0 /* CardView.swift in Sources */,
 				9C82BE5B2A1E61A0001C36C0 /* JoinRoomView.swift in Sources */,
-				9C82BE4F2A1D1000001C36C0 /* StartViewModel.swift in Sources */,
+				9C82BE642A1FC6E8001C36C0 /* UserManager.swift in Sources */,
 				9C82BE512A1D10C1001C36C0 /* RegisterView.swift in Sources */,
 				9C82BE4D2A1D0FED001C36C0 /* StartView.swift in Sources */,
 				9C82BE572A1E3A26001C36C0 /* LoggingViewModel.swift in Sources */,
@@ -358,7 +369,8 @@
 				9C82BE312A1CC221001C36C0 /* Card.swift in Sources */,
 				9C82BE532A1E383D001C36C0 /* RegisterViewModel.swift in Sources */,
 				9C82BE3E2A1CCC32001C36C0 /* MainView.swift in Sources */,
-				9C82BE592A1E6191001C36C0 /* CreateRoomView.swift in Sources */,
+				9C82BE592A1E6191001C36C0 /* RoomView.swift in Sources */,
+				9C82BE5D2A1FAFA8001C36C0 /* RoomViewModel.swift in Sources */,
 				9C82BE1A2A1CC13A001C36C0 /* HoldemApp.swift in Sources */,
 				9C82BE552A1E3A0A001C36C0 /* LoggingView.swift in Sources */,
 				9C82BE492A1D0FC7001C36C0 /* Player.swift in Sources */,

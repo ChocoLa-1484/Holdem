@@ -32,8 +32,8 @@ class RegisterViewModel: ObservableObject {
                 return
             }
             print("No duplicate account")
-            let player = Player(account: account, password: password, name: name, money: 1000000, currentRoom: nil, handCards: nil)
-            savePlayer(player: player) { [self] in
+            let player = Player(account: account, password: password, name: name, money: 1000000)
+            player.savePlayer() { [self] in
                 registerStatus = .success("Account registered successfully.")
                 showAlert = true
             }
@@ -42,10 +42,6 @@ class RegisterViewModel: ObservableObject {
     
     func resetRegisterStatus() {
         registerStatus = .none
-    }
-    
-    func resetAlert() {
-        showAlert = false
     }
     
     func isAccountDuplicated(account: String, completion: @escaping (Bool) -> Void){

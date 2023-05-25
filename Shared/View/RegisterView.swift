@@ -60,9 +60,8 @@ struct RegisterView: View {
                 switch status {
                 case .failed(let message):
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                        print("isShowingAlert \(isShowingAlert)")
                         alert = Alert(
-                            title: Text("Registration Failed"),
+                            title: Text("Registration Failed."),
                             message: Text(message),
                             dismissButton: .default(Text("OK")) {
                                 registerViewModel.resetRegisterStatus()
@@ -72,11 +71,10 @@ struct RegisterView: View {
                     }
                 case .success(let message):
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                        print("isShowingAlert \(isShowingAlert)")
                         alert = Alert(
                             title: Text("Registration Successful"),
                             message: Text(message),
-                            dismissButton: .default(Text("OK")) {
+                            dismissButton: .default(Text("OK.")) {
                                 registerViewModel.resetRegisterStatus()
                                 presentationMode.wrappedValue.dismiss()
                             }
@@ -96,6 +94,7 @@ struct RegisterView: View {
     }
 }
 // Bug：點太快
+// alert寫法
 /*
 struct RegisterView_Previews: PreviewProvider {
     static var previews: some View {

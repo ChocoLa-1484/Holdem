@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct JoinRoomView: View {
-    @Binding var presentationMode: Bool
+    @Environment(\.presentationMode) var presentationMode
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
@@ -16,6 +16,6 @@ struct JoinRoomView: View {
 
 struct JoinRoomView_Previews: PreviewProvider {
     static var previews: some View {
-        JoinRoomView(presentationMode: .constant(false))
+        JoinRoomView()
     }
 }
