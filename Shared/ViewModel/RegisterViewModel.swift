@@ -7,41 +7,45 @@
 
 import SwiftUI
 
-enum RegisterStatus {
-    case none
-    case success(String)
-    case failed(String)
-}
-
 class RegisterViewModel: ObservableObject {
-    @Published var registerStatus: RegisterStatus = .none
     @Published var showAlert: Bool = false
+    @Published var alert: Alert = Alert(title: Text("HI"))
     
-    func register(account: String, password: String, passwordConfirm: String, name: String) {
+    func register(account: String, password: String, passwordConfirm: String, name: String, presentationMode: Binding<PresentationMode>) {
         
         guard password == passwordConfirm else {
-            registerStatus = .failed("Passwords do not match.")
-            showAlert = true
+            alert = Alert(
+                title: Text("Failed."),
+                message: Text("Passwords do not match."),
+                dismissButton: .default(Text("OK"))
+            )
+            showAlert.toggle()
             return
         }
         
         isAccountDuplicated(account: account, completion: { [self] isDuplicated in
             if isDuplicated {
-                registerStatus = .failed("Duplicated account.")
-                showAlert = true
+                alert = Alert(
+                    title: Text("Failed."),
+                    message: Text("Duplicated account."),
+                    dismissButton: .default(Text("OK"))
+                )
+                showAlert.toggle()
                 return
             }
             print("No duplicate account")
             let player = Player(account: account, password: password, name: name, money: 1000000)
             player.savePlayer() { [self] in
-                registerStatus = .success("Account registered successfully.")
-                showAlert = true
+                alert = Alert(
+                    title: Text("Success."),
+                    message: Text("Account registered successfully."),
+                    dismissButton: .default(Text("OK")) {
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                )
+                showAlert.toggle()
             }
         })
-    }
-    
-    func resetRegisterStatus() {
-        registerStatus = .none
     }
     
     func isAccountDuplicated(account: String, completion: @escaping (Bool) -> Void){

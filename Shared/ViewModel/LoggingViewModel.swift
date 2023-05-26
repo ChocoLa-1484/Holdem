@@ -7,41 +7,44 @@
 
 import SwiftUI
 
-enum LoggingStatus {
-    case none
-    case success(String)
-    case failed(String)
-}
-
 class LoggingViewModel: ObservableObject {
-    @Published var loggingStatus: LoggingStatus = .none
     @Published var showAlert: Bool = false
+    @Published var alert: Alert = Alert(title: Text("HI"))
     @Published var loggedPlayer: Player?
-    
-    func logging(account: String, password: String) {
+    func logging(account: String, password: String, presentationMode: Binding<PresentationMode>) {
         // 构建查询条件
         isAccountExisted(account: account) { [self] isExisted in
             guard isExisted else {
-                loggingStatus = .failed("The account does not exist.")
-                showAlert = true
+                alert = Alert(
+                    title: Text("Failed."),
+                    message: Text("The account does not exist."),
+                    dismissButton: .default(Text("OK"))
+                )
+                showAlert.toggle()
                 return
             }
             isAccountCorrect(account: account, password: password) { [self] isCorrect in
                 guard isCorrect else {
-                    loggingStatus = .failed("The password is wrong.")
-                    showAlert = true
+                    alert = Alert(
+                        title: Text("Failed."),
+                        message: Text("The password is wrong."),
+                        dismissButton: .default(Text("OK"))
+                    )
+                    showAlert.toggle()
                     return
                 }
-                loggingStatus = .success("Congratulations!")
+                alert = Alert(
+                    title: Text("Success"),
+                    message: Text("Sign in Susscessfully."),
+                    dismissButton: .default(Text("OK")) {
+                        UserManager.shared.loggedPlayer = loggedPlayer!
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                )
                 print("Player \(loggedPlayer!.name) logged in")
-                UserManager.shared.loggedPlayer = loggedPlayer!
-                showAlert = true
+                showAlert.toggle()
             }
         }
-    }
-    
-    func resetLoggingStatus() {
-        loggingStatus = .none
     }
     
     func isAccountExisted(account: String, completion: @escaping (Bool) -> Void){

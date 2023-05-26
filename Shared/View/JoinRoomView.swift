@@ -38,6 +38,7 @@ struct JoinRoomView: View {
                 }
                 .padding()
             }
+            .padding()
         }
         .alert(isPresented: $roomViewModel.showAlert, content: {
             roomViewModel.alert
@@ -45,7 +46,6 @@ struct JoinRoomView: View {
         .fullScreenCover(isPresented: $roomViewModel.showRoom) {
             RoomView()
         }
-
     }
 }
 

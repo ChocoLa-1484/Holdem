@@ -61,7 +61,8 @@ class RoomViewModel: ObservableObject {
                     message: Text("Room is found"),
                     dismissButton: .default(Text("OK")){
                         self.showRoom.toggle()
-                    })
+                    }
+                )
                 self.showAlert.toggle()
             }
         }

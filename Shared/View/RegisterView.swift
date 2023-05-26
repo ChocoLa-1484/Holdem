@@ -12,8 +12,6 @@ struct RegisterView: View {
     @State private var password: String = ""
     @State private var passwordConfirm: String = ""
     @State private var name: String = ""
-    @State private var isShowingAlert: Bool = false
-    @State private var alert: Alert = Alert(title: Text("HI"))
     @StateObject private var registerViewModel = RegisterViewModel()
     @Environment(\.presentationMode) var presentationMode
     var body: some View {
@@ -45,7 +43,7 @@ struct RegisterView: View {
                     .padding()
                 
                 Button {
-                    registerViewModel.register(account: account, password: password, passwordConfirm: passwordConfirm, name: name)
+                    registerViewModel.register(account: account, password: password, passwordConfirm: passwordConfirm, name: name, presentationMode: presentationMode)
                 } label: {
                     Text("Register")
                         .font(.headline)
@@ -56,37 +54,8 @@ struct RegisterView: View {
                 }
                 .padding()
             }
-            .onReceive(registerViewModel.$registerStatus) { status in
-                switch status {
-                case .failed(let message):
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                        alert = Alert(
-                            title: Text("Registration Failed."),
-                            message: Text(message),
-                            dismissButton: .default(Text("OK")) {
-                                registerViewModel.resetRegisterStatus()
-                            }
-                        )
-                        isShowingAlert.toggle()
-                    }
-                case .success(let message):
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                        alert = Alert(
-                            title: Text("Registration Successful"),
-                            message: Text(message),
-                            dismissButton: .default(Text("OK.")) {
-                                registerViewModel.resetRegisterStatus()
-                                presentationMode.wrappedValue.dismiss()
-                            }
-                        )
-                        isShowingAlert.toggle()
-                    }
-                default:
-                    break
-                }
-            }
-            .alert(isPresented: $isShowingAlert, content: {
-                alert
+            .alert(isPresented: $registerViewModel.showAlert, content: {
+                registerViewModel.alert
             })
             .padding()
         }

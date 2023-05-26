@@ -11,10 +11,8 @@ struct LoggingView: View {
     @State private var account: String = ""
     @State private var password: String = ""
     @StateObject private var loggingViewModel = LoggingViewModel()
-    @State private var isShowingAlert: Bool = false
-    @State private var alert: Alert = Alert(title: Text("HI"))
     @Environment(\.presentationMode) var presentationMode
-        
+    
     var body: some View {
         ZStack(alignment: .topLeading) {
             Button(action: {
@@ -35,7 +33,7 @@ struct LoggingView: View {
                     .padding()
                 
                 Button {
-                    loggingViewModel.logging(account: account, password: password)
+                    loggingViewModel.logging(account: account, password: password, presentationMode: presentationMode)
                 } label: {
                     Text("Login!")
                         .font(.headline)
@@ -46,44 +44,13 @@ struct LoggingView: View {
                 }
                 .padding()
             }
-            .onReceive(loggingViewModel.$loggingStatus) { status in
-                switch status {
-                case .failed(let message):
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                        alert = Alert(
-                            title: Text("Sign in Failed."),
-                            message: Text(message),
-                            dismissButton: .default(Text("OK")) {
-                                loggingViewModel.resetLoggingStatus()
-                            }
-                        )
-                        isShowingAlert.toggle()
-                    }
-                case .success(let message):
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                        alert = Alert(
-                            title: Text("Sign in Successfully."),
-                            message: Text(message),
-                            dismissButton: .default(Text("OK")) {
-                                loggingViewModel.resetLoggingStatus()
-                                presentationMode.wrappedValue.dismiss()
-                            }
-                        )
-                        isShowingAlert.toggle()
-                    }
-                default:
-                    break
-                }
-            }
-            .alert(isPresented: $isShowingAlert, content: {
-                alert
+            .alert(isPresented: $loggingViewModel.showAlert, content: {
+                loggingViewModel.alert
             })
             .padding()
         }
     }
 }
-// Bug：點太快
-// alert寫法
 
 struct LoggingView_Previews: PreviewProvider {
     static var previews: some View {
