@@ -18,8 +18,8 @@ enum RoomStatus: Codable {
 
 struct Room: Codable {
     let roomId: String
-    let gameState: RoomStatus
-    var players: [GamePlayer]
+    var gameState: RoomStatus
+    var players: [String]
     
     func saveRoom(completion: @escaping () -> Void) {
         do {
@@ -28,11 +28,11 @@ struct Room: Codable {
                     print("Failed to store room data: \(error.localizedDescription)")
                 } else {
                     print("Room data stored successfully")
+                    completion()
                 }
             }
         } catch {
             print("Failed to encode room data: \(error.localizedDescription)")
         }
     }
-
 }

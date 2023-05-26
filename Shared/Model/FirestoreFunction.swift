@@ -12,20 +12,39 @@ import FirebaseFirestore
 
 let db = Firestore.firestore()
 
-func searchId(collectionName: String) {
-    db.collection(collectionName).getDocuments { (snapshot, error) in
-        if let error = error {
-            // 获取过程中出现错误
-            print("Failed to get collection documents: \(error.localizedDescription)")
-        } else {
-            guard let documents = snapshot?.documents else {
-                print("No documents found in the collection.")
-                return
-            }
+func searchDocument(collectionName: String, fieldName: String, target: String, completion: @escaping (String?) -> Void) {
+   let collectionRef = Firestore.firestore().collection(collectionName)
+   collectionRef.whereField(fieldName, isEqualTo: target).getDocuments { (snapshot, error) in
+       if let error = error {
+           print("Error searching documents: \(error)")
+           completion(nil)
+           return
+       }
 
-            for document in documents {
-                print("Collection ID: \(document.documentID)")
-            }
-        }
-    }
+       guard let documents = snapshot?.documents else {
+           print("No documents found")
+           completion(nil)
+           return
+       }
+       
+       if let documentID = documents.first?.documentID {
+           completion(documentID)
+       } else {
+           completion(nil)
+       }
+   }
+}
+
+func updateDocument(collectionName: String, fieldName: String, newValue: Any, target: String, completion: @escaping () -> Void) {
+    let collectionRef = Firestore.firestore().collection(collectionName)
+    let documentRef = collectionRef.document(target)
+
+    documentRef.updateData([fieldName: newValue]) { error in
+       if let error = error {
+           print("Error updating document: \(error)")
+       } else {
+           print("Document updated successfully")
+           completion()
+       }
+   }
 }

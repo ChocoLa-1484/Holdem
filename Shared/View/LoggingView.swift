@@ -13,7 +13,6 @@ struct LoggingView: View {
     @StateObject private var loggingViewModel = LoggingViewModel()
     @State private var isShowingAlert: Bool = false
     @State private var alert: Alert = Alert(title: Text("HI"))
-    @Binding var isLogged: Bool
     @Environment(\.presentationMode) var presentationMode
         
     var body: some View {
@@ -67,7 +66,6 @@ struct LoggingView: View {
                             message: Text(message),
                             dismissButton: .default(Text("OK")) {
                                 loggingViewModel.resetLoggingStatus()
-                                isLogged = true
                                 presentationMode.wrappedValue.dismiss()
                             }
                         )
@@ -89,7 +87,7 @@ struct LoggingView: View {
 
 struct LoggingView_Previews: PreviewProvider {
     static var previews: some View {
-        LoggingView(isLogged: .constant(false))
+        LoggingView()
     }
 }
 

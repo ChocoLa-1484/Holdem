@@ -33,6 +33,8 @@ class LoggingViewModel: ObservableObject {
                     return
                 }
                 loggingStatus = .success("Congratulations!")
+                print("Player \(loggedPlayer!.name) logged in")
+                UserManager.shared.loggedPlayer = loggedPlayer!
                 showAlert = true
             }
         }

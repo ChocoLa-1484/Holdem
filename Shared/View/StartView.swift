@@ -10,21 +10,9 @@ import SwiftUI
 struct StartView: View {
     @State var isShowingRegisterView: Bool = false
     @State var isShowingLoggingView: Bool = false
-    @State var isShowingCreateRoomView: Bool = false
     @State var isShowingJoinRoomView: Bool = false
-    @StateObject var loggingViewModel = LoggingViewModel()
-    @StateObject var roomViewModel = RoomViewModel()
-    @State var isLogged: Bool = false {
-        didSet {
-            if isLogged {
-                // 执行登录成功后的操作
-                UserManager.shared.loggedPlayer = loggingViewModel.loggedPlayer!
-            } else {
-                // 执行登出操作
-                UserManager.shared.loggedPlayer = nil
-            }
-        }
-    }
+    @StateObject private var roomViewModel = RoomViewModel()
+    @State var isLogged: Bool = false
     
     fileprivate func buttonLabel(text: String) -> some View {
         return Text(text)
@@ -39,23 +27,19 @@ struct StartView: View {
         ZStack {
             ZStack{
                 Rectangle()
-                    .frame(width: 300, height: 300, alignment: .topLeading)
+                    .frame(width: 150, height: 150, alignment: .topLeading)
                     .foregroundColor(Color.pink)
                     .overlay(
                         VStack{
                             Text(UserManager.shared.loggedPlayer?.name ?? "")
-                            Text(UserManager.shared.loggedPlayer?.account ?? "")
-                            Text(UserManager.shared.loggedPlayer?.password ?? "")
                             Text("\(UserManager.shared.loggedPlayer?.money ?? 0)")
                         }
                     )
                     .opacity(isLogged ? 1 : 0)
-                    .offset(y: -200)
+                    .offset(x: -100, y: -100)
                 VStack {
                     Button {
-                        roomViewModel.createRoom(player: UserManager.shared.loggedPlayer!) {
-                            isShowingCreateRoomView.toggle()
-                        }
+                        roomViewModel.createRoom(player: UserManager.shared.loggedPlayer!)
                     } label: {
                         buttonLabel(text: "Create Room")
                     }
@@ -69,7 +53,7 @@ struct StartView: View {
                     .opacity(isLogged ? 1 : 0)
                     .disabled(!isLogged)
                 }
-                .fullScreenCover(isPresented: $isShowingCreateRoomView) {
+                .fullScreenCover(isPresented: $roomViewModel.showRoom) {
                     RoomView()
                 }
                 .fullScreenCover(isPresented: $isShowingJoinRoomView) {
@@ -96,9 +80,9 @@ struct StartView: View {
                 RegisterView()
             }
             .fullScreenCover(isPresented: $isShowingLoggingView) {
-                LoggingView(isLogged: $isLogged)
+                LoggingView()
                     .onDisappear {
-                        isLogged = (loggingViewModel.loggedPlayer != nil)
+                        isLogged = UserManager.shared.loggedPlayer != nil
                     }
             }
         }

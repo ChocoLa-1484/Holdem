@@ -9,15 +9,12 @@
 /* Begin PBXBuildFile section */
 		9C82BE1A2A1CC13A001C36C0 /* HoldemApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BDF22A1CC139001C36C0 /* HoldemApp.swift */; };
 		9C82BE1E2A1CC13A001C36C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C82BDF42A1CC13A001C36C0 /* Assets.xcassets */; };
-		9C82BE1F2A1CC13A001C36C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C82BDF42A1CC13A001C36C0 /* Assets.xcassets */; };
 		9C82BE312A1CC221001C36C0 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BE302A1CC221001C36C0 /* Card.swift */; };
 		9C82BE332A1CC241001C36C0 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BE322A1CC241001C36C0 /* Deck.swift */; };
 		9C82BE352A1CC691001C36C0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C82BE342A1CC691001C36C0 /* GoogleService-Info.plist */; };
 		9C82BE382A1CCBB5001C36C0 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 9C82BE372A1CCBB5001C36C0 /* FirebaseAuth */; };
 		9C82BE3A2A1CCBB5001C36C0 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 9C82BE392A1CCBB5001C36C0 /* FirebaseFirestoreSwift-Beta */; };
 		9C82BE3C2A1CCBB5001C36C0 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 9C82BE3B2A1CCBB5001C36C0 /* FirebaseStorage */; };
-		9C82BE3E2A1CCC32001C36C0 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BE3D2A1CCC32001C36C0 /* MainView.swift */; };
-		9C82BE402A1CF0C4001C36C0 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BE3F2A1CF0C4001C36C0 /* MainViewModel.swift */; };
 		9C82BE422A1CF11C001C36C0 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BE412A1CF11C001C36C0 /* CardView.swift */; };
 		9C82BE472A1D0F8A001C36C0 /* FirestoreFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BE462A1D0F8A001C36C0 /* FirestoreFunction.swift */; };
 		9C82BE492A1D0FC7001C36C0 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BE482A1D0FC7001C36C0 /* Player.swift */; };
@@ -31,37 +28,17 @@
 		9C82BE5B2A1E61A0001C36C0 /* JoinRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BE5A2A1E61A0001C36C0 /* JoinRoomView.swift */; };
 		9C82BE5D2A1FAFA8001C36C0 /* RoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BE5C2A1FAFA8001C36C0 /* RoomViewModel.swift */; };
 		9C82BE642A1FC6E8001C36C0 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BE632A1FC6E8001C36C0 /* UserManager.swift */; };
+		9CBAE1702A20C72F0048D945 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBAE16F2A20C72F0048D945 /* GameViewModel.swift */; };
+		9CBAE1C42A20CCD80048D945 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBAE1C32A20CCD80048D945 /* GameView.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		9C82BE072A1CC13A001C36C0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9C82BDED2A1CC139001C36C0 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9C82BDF82A1CC13A001C36C0;
-			remoteInfo = "Holdem (iOS)";
-		};
-		9C82BE132A1CC13A001C36C0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9C82BDED2A1CC139001C36C0 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9C82BDFE2A1CC13A001C36C0;
-			remoteInfo = "Holdem (macOS)";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		9C82BDF22A1CC139001C36C0 /* HoldemApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoldemApp.swift; sourceTree = "<group>"; };
 		9C82BDF42A1CC13A001C36C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9C82BDF92A1CC13A001C36C0 /* Holdem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Holdem.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		9C82BDFF2A1CC13A001C36C0 /* Holdem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Holdem.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		9C82BE062A1CC13A001C36C0 /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9C82BE122A1CC13A001C36C0 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C82BE302A1CC221001C36C0 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		9C82BE322A1CC241001C36C0 /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		9C82BE342A1CC691001C36C0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		9C82BE3D2A1CCC32001C36C0 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		9C82BE3F2A1CF0C4001C36C0 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		9C82BE412A1CF11C001C36C0 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		9C82BE462A1D0F8A001C36C0 /* FirestoreFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreFunction.swift; sourceTree = "<group>"; };
 		9C82BE482A1D0FC7001C36C0 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
@@ -75,6 +52,8 @@
 		9C82BE5A2A1E61A0001C36C0 /* JoinRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinRoomView.swift; sourceTree = "<group>"; };
 		9C82BE5C2A1FAFA8001C36C0 /* RoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewModel.swift; sourceTree = "<group>"; };
 		9C82BE632A1FC6E8001C36C0 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		9CBAE16F2A20C72F0048D945 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
+		9CBAE1C32A20CCD80048D945 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,27 +64,6 @@
 				9C82BE382A1CCBB5001C36C0 /* FirebaseAuth in Frameworks */,
 				9C82BE3A2A1CCBB5001C36C0 /* FirebaseFirestoreSwift-Beta in Frameworks */,
 				9C82BE3C2A1CCBB5001C36C0 /* FirebaseStorage in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9C82BDFC2A1CC13A001C36C0 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9C82BE032A1CC13A001C36C0 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9C82BE0F2A1CC13A001C36C0 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,9 +95,6 @@
 			isa = PBXGroup;
 			children = (
 				9C82BDF92A1CC13A001C36C0 /* Holdem.app */,
-				9C82BDFF2A1CC13A001C36C0 /* Holdem.app */,
-				9C82BE062A1CC13A001C36C0 /* Tests iOS.xctest */,
-				9C82BE122A1CC13A001C36C0 /* Tests macOS.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -147,10 +102,10 @@
 		9C82BE432A1CFC6F001C36C0 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				9C82BE3F2A1CF0C4001C36C0 /* MainViewModel.swift */,
 				9C82BE522A1E383D001C36C0 /* RegisterViewModel.swift */,
 				9C82BE562A1E3A26001C36C0 /* LoggingViewModel.swift */,
 				9C82BE5C2A1FAFA8001C36C0 /* RoomViewModel.swift */,
+				9CBAE16F2A20C72F0048D945 /* GameViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -159,13 +114,13 @@
 			isa = PBXGroup;
 			children = (
 				9C82BDF22A1CC139001C36C0 /* HoldemApp.swift */,
-				9C82BE3D2A1CCC32001C36C0 /* MainView.swift */,
 				9C82BE412A1CF11C001C36C0 /* CardView.swift */,
 				9C82BE4C2A1D0FED001C36C0 /* StartView.swift */,
 				9C82BE502A1D10C1001C36C0 /* RegisterView.swift */,
 				9C82BE542A1E3A0A001C36C0 /* LoggingView.swift */,
 				9C82BE582A1E6191001C36C0 /* RoomView.swift */,
 				9C82BE5A2A1E61A0001C36C0 /* JoinRoomView.swift */,
+				9CBAE1C32A20CCD80048D945 /* GameView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -215,59 +170,6 @@
 			productReference = 9C82BDF92A1CC13A001C36C0 /* Holdem.app */;
 			productType = "com.apple.product-type.application";
 		};
-		9C82BDFE2A1CC13A001C36C0 /* Holdem (macOS) */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 9C82BE252A1CC13A001C36C0 /* Build configuration list for PBXNativeTarget "Holdem (macOS)" */;
-			buildPhases = (
-				9C82BDFB2A1CC13A001C36C0 /* Sources */,
-				9C82BDFC2A1CC13A001C36C0 /* Frameworks */,
-				9C82BDFD2A1CC13A001C36C0 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Holdem (macOS)";
-			productName = "Holdem (macOS)";
-			productReference = 9C82BDFF2A1CC13A001C36C0 /* Holdem.app */;
-			productType = "com.apple.product-type.application";
-		};
-		9C82BE052A1CC13A001C36C0 /* Tests iOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 9C82BE282A1CC13A001C36C0 /* Build configuration list for PBXNativeTarget "Tests iOS" */;
-			buildPhases = (
-				9C82BE022A1CC13A001C36C0 /* Sources */,
-				9C82BE032A1CC13A001C36C0 /* Frameworks */,
-				9C82BE042A1CC13A001C36C0 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				9C82BE082A1CC13A001C36C0 /* PBXTargetDependency */,
-			);
-			name = "Tests iOS";
-			productName = "Tests iOS";
-			productReference = 9C82BE062A1CC13A001C36C0 /* Tests iOS.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
-		9C82BE112A1CC13A001C36C0 /* Tests macOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 9C82BE2B2A1CC13A001C36C0 /* Build configuration list for PBXNativeTarget "Tests macOS" */;
-			buildPhases = (
-				9C82BE0E2A1CC13A001C36C0 /* Sources */,
-				9C82BE0F2A1CC13A001C36C0 /* Frameworks */,
-				9C82BE102A1CC13A001C36C0 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				9C82BE142A1CC13A001C36C0 /* PBXTargetDependency */,
-			);
-			name = "Tests macOS";
-			productName = "Tests macOS";
-			productReference = 9C82BE122A1CC13A001C36C0 /* Tests macOS.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -280,17 +182,6 @@
 				TargetAttributes = {
 					9C82BDF82A1CC13A001C36C0 = {
 						CreatedOnToolsVersion = 13.0;
-					};
-					9C82BDFE2A1CC13A001C36C0 = {
-						CreatedOnToolsVersion = 13.0;
-					};
-					9C82BE052A1CC13A001C36C0 = {
-						CreatedOnToolsVersion = 13.0;
-						TestTargetID = 9C82BDF82A1CC13A001C36C0;
-					};
-					9C82BE112A1CC13A001C36C0 = {
-						CreatedOnToolsVersion = 13.0;
-						TestTargetID = 9C82BDFE2A1CC13A001C36C0;
 					};
 				};
 			};
@@ -311,9 +202,6 @@
 			projectRoot = "";
 			targets = (
 				9C82BDF82A1CC13A001C36C0 /* Holdem (iOS) */,
-				9C82BDFE2A1CC13A001C36C0 /* Holdem (macOS) */,
-				9C82BE052A1CC13A001C36C0 /* Tests iOS */,
-				9C82BE112A1CC13A001C36C0 /* Tests macOS */,
 			);
 		};
 /* End PBXProject section */
@@ -328,28 +216,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9C82BDFD2A1CC13A001C36C0 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9C82BE1F2A1CC13A001C36C0 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9C82BE042A1CC13A001C36C0 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9C82BE102A1CC13A001C36C0 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -357,9 +223,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CBAE1702A20C72F0048D945 /* GameViewModel.swift in Sources */,
 				9C82BE422A1CF11C001C36C0 /* CardView.swift in Sources */,
 				9C82BE5B2A1E61A0001C36C0 /* JoinRoomView.swift in Sources */,
 				9C82BE642A1FC6E8001C36C0 /* UserManager.swift in Sources */,
+				9CBAE1C42A20CCD80048D945 /* GameView.swift in Sources */,
 				9C82BE512A1D10C1001C36C0 /* RegisterView.swift in Sources */,
 				9C82BE4D2A1D0FED001C36C0 /* StartView.swift in Sources */,
 				9C82BE572A1E3A26001C36C0 /* LoggingViewModel.swift in Sources */,
@@ -368,51 +236,15 @@
 				9C82BE4B2A1D0FD7001C36C0 /* Room.swift in Sources */,
 				9C82BE312A1CC221001C36C0 /* Card.swift in Sources */,
 				9C82BE532A1E383D001C36C0 /* RegisterViewModel.swift in Sources */,
-				9C82BE3E2A1CCC32001C36C0 /* MainView.swift in Sources */,
 				9C82BE592A1E6191001C36C0 /* RoomView.swift in Sources */,
 				9C82BE5D2A1FAFA8001C36C0 /* RoomViewModel.swift in Sources */,
 				9C82BE1A2A1CC13A001C36C0 /* HoldemApp.swift in Sources */,
 				9C82BE552A1E3A0A001C36C0 /* LoggingView.swift in Sources */,
 				9C82BE492A1D0FC7001C36C0 /* Player.swift in Sources */,
-				9C82BE402A1CF0C4001C36C0 /* MainViewModel.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9C82BDFB2A1CC13A001C36C0 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9C82BE022A1CC13A001C36C0 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9C82BE0E2A1CC13A001C36C0 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		9C82BE082A1CC13A001C36C0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 9C82BDF82A1CC13A001C36C0 /* Holdem (iOS) */;
-			targetProxy = 9C82BE072A1CC13A001C36C0 /* PBXContainerItemProxy */;
-		};
-		9C82BE142A1CC13A001C36C0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 9C82BDFE2A1CC13A001C36C0 /* Holdem (macOS) */;
-			targetProxy = 9C82BE132A1CC13A001C36C0 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		9C82BE202A1CC13A001C36C0 /* Debug */ = {
@@ -587,161 +419,6 @@
 			};
 			name = Release;
 		};
-		9C82BE262A1CC13A001C36C0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 66LAS5YM4V;
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.leo.Holdem;
-				PRODUCT_NAME = Holdem;
-				SDKROOT = macosx;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		9C82BE272A1CC13A001C36C0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 66LAS5YM4V;
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.leo.Holdem;
-				PRODUCT_NAME = Holdem;
-				SDKROOT = macosx;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
-		9C82BE292A1CC13A001C36C0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 66LAS5YM4V;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.leo.Tests-iOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Holdem (iOS)";
-			};
-			name = Debug;
-		};
-		9C82BE2A2A1CC13A001C36C0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 66LAS5YM4V;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.leo.Tests-iOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Holdem (iOS)";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		9C82BE2C2A1CC13A001C36C0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 66LAS5YM4V;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 11.3;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.leo.Tests-macOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = "Holdem (macOS)";
-			};
-			name = Debug;
-		};
-		9C82BE2D2A1CC13A001C36C0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 66LAS5YM4V;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 11.3;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.leo.Tests-macOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = "Holdem (macOS)";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -759,33 +436,6 @@
 			buildConfigurations = (
 				9C82BE232A1CC13A001C36C0 /* Debug */,
 				9C82BE242A1CC13A001C36C0 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		9C82BE252A1CC13A001C36C0 /* Build configuration list for PBXNativeTarget "Holdem (macOS)" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				9C82BE262A1CC13A001C36C0 /* Debug */,
-				9C82BE272A1CC13A001C36C0 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		9C82BE282A1CC13A001C36C0 /* Build configuration list for PBXNativeTarget "Tests iOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				9C82BE292A1CC13A001C36C0 /* Debug */,
-				9C82BE2A2A1CC13A001C36C0 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		9C82BE2B2A1CC13A001C36C0 /* Build configuration list for PBXNativeTarget "Tests macOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				9C82BE2C2A1CC13A001C36C0 /* Debug */,
-				9C82BE2D2A1CC13A001C36C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

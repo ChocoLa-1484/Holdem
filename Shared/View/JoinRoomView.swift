@@ -9,8 +9,43 @@ import SwiftUI
 
 struct JoinRoomView: View {
     @Environment(\.presentationMode) var presentationMode
+    @State private var roomId: String = ""
+    @StateObject private var roomViewModel = RoomViewModel()
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack(alignment: .topLeading) {
+            Button(action: {
+                presentationMode.wrappedValue.dismiss()
+            }) {
+                Image(systemName: "x.circle")
+                    .font(.title)
+                    .foregroundColor(.red)
+                    .padding()
+            }
+            VStack {
+                TextField("Room ID", text: $roomId)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding()
+                
+                Button {
+                    roomViewModel.joinRoom(player: UserManager.shared.loggedPlayer!, roomId: roomId)
+                } label: {
+                    Text("Submit")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.blue)
+                        .cornerRadius(10)
+                }
+                .padding()
+            }
+        }
+        .alert(isPresented: $roomViewModel.showAlert, content: {
+            roomViewModel.alert
+        })
+        .fullScreenCover(isPresented: $roomViewModel.showRoom) {
+            RoomView()
+        }
+
     }
 }
 

@@ -10,12 +10,17 @@ import Foundation
 import Firebase
 import FirebaseFirestore
 
-struct Player: Codable {
+struct Player: Codable, Identifiable {
+    var id = UUID()
+    
     let account: String
     var password: String
     
     var name: String
     var money: Int
+    
+    var handCard: [Card]?
+    var bet: Int?
     
     func savePlayer(completion: @escaping () -> Void) {
         do {
