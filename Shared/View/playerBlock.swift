@@ -17,12 +17,15 @@ struct playerBlock: View {
                 Text("\(player.money)")
             }
             VStack {
-                ForEach (player.handCard!) { card in
+                /*
+                ForEach (player.handCard?) { card in
                     CardView(card: card)
-                }
+                }*/
             }
         }
     }
+    
+    
 }
 /*
 struct playerBlock_Previews: PreviewProvider {

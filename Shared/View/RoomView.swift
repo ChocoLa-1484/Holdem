@@ -9,7 +9,7 @@ import SwiftUI
 import GameKit
 
 struct RoomView: View {
-    @StateObject private var roomViewModel = RoomViewModel()
+    @ObservedObject var roomViewModel: RoomViewModel
     @Environment(\.presentationMode) var presentationMode
     var body: some View {
         ZStack(alignment: .topLeading) {
@@ -22,7 +22,7 @@ struct RoomView: View {
                     .padding()
             }
             HStack{
-                Text("\(roomViewModel.roomId)")
+                Text("\(roomViewModel.roomID)")
                     .font(.title)
                     .bold()
                 Spacer()
@@ -35,14 +35,14 @@ struct RoomView: View {
             }
         }
         .onAppear(perform: {
-            print(roomViewModel.players)
-            print(roomViewModel.roomId)
+            
         })
     }
 }
-
+/*
 struct RoomView_Previews: PreviewProvider {
     static var previews: some View {
         RoomView()
     }
 }
+*/

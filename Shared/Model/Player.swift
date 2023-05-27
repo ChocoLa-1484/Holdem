@@ -9,22 +9,23 @@ import SwiftUI
 import Foundation
 import Firebase
 import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 struct Player: Codable, Identifiable {
-    var id = UUID()
+    @DocumentID var id: String?
     
     let account: String
     var password: String
-    
     var name: String
     var money: Int
+    var host: Bool
     
+    var roomID: String?
     var handCard: [Card]?
     var bet: Int?
-    
     func savePlayer(completion: @escaping () -> Void) {
         do {
-            try db.collection("player").document().setData(from: self) { error in
+            try db.collection("accounts").document().setData(from: self) { error in
                 if let error = error {
                     print("Failed to store player data: \(error.localizedDescription)")
                 } else {
@@ -51,7 +52,7 @@ struct Player: Codable, Identifiable {
             updatedData["money"] = newMoney
         }
         
-        db.collection("player").document(self.account).updateData(updatedData) { error in
+        db.collection("accounts").document(id!).updateData(updatedData) { error in
            if let error = error {
                print("Error updating player data: \(error.localizedDescription)")
            } else {

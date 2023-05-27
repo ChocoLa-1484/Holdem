@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseFirestoreSwift
 
 class RegisterViewModel: ObservableObject {
     @Published var showAlert: Bool = false
@@ -34,7 +35,7 @@ class RegisterViewModel: ObservableObject {
                 return
             }
             print("No duplicate account")
-            let player = Player(account: account, password: password, name: name, money: 1000000)
+            let player = Player(account: account, password: password, name: name, money: 1000000, host: false)
             player.savePlayer() { [self] in
                 alert = Alert(
                     title: Text("Success."),
@@ -49,25 +50,16 @@ class RegisterViewModel: ObservableObject {
     }
     
     func isAccountDuplicated(account: String, completion: @escaping (Bool) -> Void){
-        let query = db.collection("player").whereField("account", isEqualTo: account)
-        query.getDocuments { (snapshot, error) in
-            if let error = error {
-                // 查询过程中出现错误
-                print("Failed to get collection documents: \(error.localizedDescription)")
-            } else {
-                guard let documents = snapshot?.documents else {
-                    print("No documents found in the collection.")
-                    completion(false)
-                    return
-                }
-                if documents.isEmpty {
-                    print("Account and password not found.")
-                    completion(false)
-                } else {
-                    print("Account is duplicated")
-                    completion(true)
-                }
-            }
+        @FirestoreQuery(collectionPath: "accounts", predicates: [
+                .isEqualTo("account", account)
+        ]) var players: [Player]
+        
+        if players.isEmpty {
+            print("Account and password are not found.")
+            completion(false)
+        } else {
+            print("Account is duplicated")
+            completion(true)
         }
     }
 }

@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import FirebaseFirestoreSwift
 
 struct Card: Comparable, Codable, Identifiable {
-    var id =  UUID()
+    @DocumentID var id: String?
     let suit: Suit
     let rank: Rank
 

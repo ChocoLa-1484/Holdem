@@ -11,7 +11,7 @@ struct StartView: View {
     @State var isShowingRegisterView: Bool = false
     @State var isShowingLoggingView: Bool = false
     @State var isShowingJoinRoomView: Bool = false
-    @StateObject private var roomViewModel = RoomViewModel()
+    @ObservedObject var roomViewModel = RoomViewModel()
     @State var isLogged: Bool = false
     
     fileprivate func buttonLabel(text: String) -> some View {
@@ -54,10 +54,10 @@ struct StartView: View {
                     .disabled(!isLogged)
                 }
                 .fullScreenCover(isPresented: $roomViewModel.showRoom) {
-                    RoomView()
+                    RoomView(roomViewModel: roomViewModel)
                 }
                 .fullScreenCover(isPresented: $isShowingJoinRoomView) {
-                    JoinRoomView()
+                    JoinRoomView(roomViewModel: roomViewModel)
                 }
             }
             VStack {

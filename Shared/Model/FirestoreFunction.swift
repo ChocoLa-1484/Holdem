@@ -35,8 +35,8 @@ func searchDocument(collectionName: String, fieldName: String, target: String, c
    }
 }
 
-func updateDocument(collectionName: String, fieldName: String, newValue: Any, target: String, completion: @escaping () -> Void) {
-    let collectionRef = Firestore.firestore().collection(collectionName)
+func updateDocument(collectionName: String, target: String, fieldName: String, newValue: Any, completion: @escaping () -> Void) {
+    let collectionRef = db.collection(collectionName)
     let documentRef = collectionRef.document(target)
 
     documentRef.updateData([fieldName: newValue]) { error in

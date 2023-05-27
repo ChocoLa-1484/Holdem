@@ -31,6 +31,7 @@
 		9CBAE1702A20C72F0048D945 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBAE16F2A20C72F0048D945 /* GameViewModel.swift */; };
 		9CBAE1C42A20CCD80048D945 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBAE1C32A20CCD80048D945 /* GameView.swift */; };
 		9CBAE1C62A21CF6C0048D945 /* playerBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBAE1C52A21CF6C0048D945 /* playerBlock.swift */; };
+		9CDE0FE32A229446002C4CAB /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDE0FE22A229446002C4CAB /* PlayerViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		9CBAE16F2A20C72F0048D945 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		9CBAE1C32A20CCD80048D945 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		9CBAE1C52A21CF6C0048D945 /* playerBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = playerBlock.swift; sourceTree = "<group>"; };
+		9CDE0FE22A229446002C4CAB /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 				9C82BE562A1E3A26001C36C0 /* LoggingViewModel.swift */,
 				9C82BE5C2A1FAFA8001C36C0 /* RoomViewModel.swift */,
 				9CBAE16F2A20C72F0048D945 /* GameViewModel.swift */,
+				9CDE0FE22A229446002C4CAB /* PlayerViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -227,6 +230,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CBAE1702A20C72F0048D945 /* GameViewModel.swift in Sources */,
+				9CDE0FE32A229446002C4CAB /* PlayerViewModel.swift in Sources */,
 				9C82BE422A1CF11C001C36C0 /* CardView.swift in Sources */,
 				9C82BE5B2A1E61A0001C36C0 /* JoinRoomView.swift in Sources */,
 				9C82BE642A1FC6E8001C36C0 /* UserManager.swift in Sources */,

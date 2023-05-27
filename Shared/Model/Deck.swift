@@ -8,9 +8,9 @@
 import SwiftUI
 import Foundation
 import FirebaseFirestoreSwift
-import FirebaseFirestoreSwift
 
-struct Deck: Codable {
+struct Deck: Codable, Identifiable {
+    @DocumentID var id: String?
     var cards: [Card] = []
     
     init() {

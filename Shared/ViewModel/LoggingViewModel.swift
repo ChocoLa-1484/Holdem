@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseFirestoreSwift
 
 class LoggingViewModel: ObservableObject {
     @Published var showAlert: Bool = false
@@ -48,54 +49,32 @@ class LoggingViewModel: ObservableObject {
     }
     
     func isAccountExisted(account: String, completion: @escaping (Bool) -> Void){
-        let query = db.collection("player").whereField("account", isEqualTo: account)
-        query.getDocuments { (snapshot, error) in
-            if let error = error {
-                // 查询过程中出现错误
-                print("Failed to get collection documents: \(error.localizedDescription)")
-            } else {
-                guard let documents = snapshot?.documents else {
-                    print("No documents found in the collection.")
-                    completion(false)
-                    return
-                }
-                if documents.isEmpty {
-                    print("Account and password are not found.")
-                    completion(false)
-                } else {
-                    print("Account exist.")
-                    completion(true)
-                }
-            }
+        @FirestoreQuery(collectionPath: "accounts", predicates: [
+                .isEqualTo("account", account)
+        ]) var players: [Player]
+        print(players)
+        if players.isEmpty {
+            print("No documents found in the collection.")
+            completion(false)
+        } else {
+            print("Account exist.")
+            completion(true)
         }
     }
     
     func isAccountCorrect(account: String, password: String, completion: @escaping (Bool) -> Void){
-        let query = db.collection("player")
-            .whereField("account", isEqualTo: account)
-            .whereField("password", isEqualTo: password)
-        query.getDocuments { [self] (snapshot, error) in
-            if let error = error {
-                // 查询过程中出现错误
-                print("Failed to get collection documents: \(error.localizedDescription)")
+        @FirestoreQuery(collectionPath: "accounts", predicates: [
+                .isEqualTo("account", account)
+        ]) var players: [Player]
+        
+        for player in players {
+            if player.password == password {
+                print("Sign in suceesfully.")
+                print(player.id!)
+                completion(true)
             } else {
-                guard let documents = snapshot?.documents else {
-                    print("No documents found in the collection.")
-                    completion(false)
-                    return
-                }
-                if documents.isEmpty {
-                    print("Password is wrong.")
-                    completion(false)
-                } else {
-                    print("Sign in suceesfully.")
-                    let document = documents[0]
-                    // 从文档中获取字段值并创建Player对象
-                    let name = document.data()["name"] as? String
-                    let money = document.data()["money"] as? Int
-                    self.loggedPlayer = Player(account: account, password: password, name: name!, money: money!)
-                    completion(true)
-                }
+                print("Password is wrong.")
+                completion(false)
             }
         }
     }

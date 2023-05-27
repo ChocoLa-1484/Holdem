@@ -10,7 +10,7 @@ import SwiftUI
 struct JoinRoomView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var roomId: String = ""
-    @StateObject private var roomViewModel = RoomViewModel()
+    @ObservedObject var roomViewModel: RoomViewModel
     var body: some View {
         ZStack(alignment: .topLeading) {
             Button(action: {
@@ -44,13 +44,14 @@ struct JoinRoomView: View {
             roomViewModel.alert
         })
         .fullScreenCover(isPresented: $roomViewModel.showRoom) {
-            RoomView()
+            RoomView(roomViewModel: roomViewModel)
         }
     }
 }
-
+/*
 struct JoinRoomView_Previews: PreviewProvider {
     static var previews: some View {
         JoinRoomView()
     }
 }
+*/
