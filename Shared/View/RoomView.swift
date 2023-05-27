@@ -12,13 +12,31 @@ struct RoomView: View {
     @StateObject private var roomViewModel = RoomViewModel()
     @Environment(\.presentationMode) var presentationMode
     var body: some View {
-        VStack{
-            ForEach (roomViewModel.players) { player in
-                Text(player.name)
+        ZStack(alignment: .topLeading) {
+            Button(action: {
+                presentationMode.wrappedValue.dismiss()
+            }) {
+                Image(systemName: "x.circle")
+                    .font(.title)
+                    .foregroundColor(.red)
+                    .padding()
+            }
+            HStack{
+                Text("\(roomViewModel.roomId)")
+                    .font(.title)
+                    .bold()
+                Spacer()
+                Spacer()
+            }
+            VStack{
+                ForEach (roomViewModel.players) { player in
+                    playerBlock(player: player)
+                }
             }
         }
         .onAppear(perform: {
-            
+            print(roomViewModel.players)
+            print(roomViewModel.roomId)
         })
     }
 }

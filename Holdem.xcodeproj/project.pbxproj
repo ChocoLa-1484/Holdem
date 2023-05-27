@@ -30,6 +30,7 @@
 		9C82BE642A1FC6E8001C36C0 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BE632A1FC6E8001C36C0 /* UserManager.swift */; };
 		9CBAE1702A20C72F0048D945 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBAE16F2A20C72F0048D945 /* GameViewModel.swift */; };
 		9CBAE1C42A20CCD80048D945 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBAE1C32A20CCD80048D945 /* GameView.swift */; };
+		9CBAE1C62A21CF6C0048D945 /* playerBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBAE1C52A21CF6C0048D945 /* playerBlock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		9C82BE632A1FC6E8001C36C0 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		9CBAE16F2A20C72F0048D945 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		9CBAE1C32A20CCD80048D945 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		9CBAE1C52A21CF6C0048D945 /* playerBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = playerBlock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 				9C82BE582A1E6191001C36C0 /* RoomView.swift */,
 				9C82BE5A2A1E61A0001C36C0 /* JoinRoomView.swift */,
 				9CBAE1C32A20CCD80048D945 /* GameView.swift */,
+				9CBAE1C52A21CF6C0048D945 /* playerBlock.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 				9C82BE4B2A1D0FD7001C36C0 /* Room.swift in Sources */,
 				9C82BE312A1CC221001C36C0 /* Card.swift in Sources */,
 				9C82BE532A1E383D001C36C0 /* RegisterViewModel.swift in Sources */,
+				9CBAE1C62A21CF6C0048D945 /* playerBlock.swift in Sources */,
 				9C82BE592A1E6191001C36C0 /* RoomView.swift in Sources */,
 				9C82BE5D2A1FAFA8001C36C0 /* RoomViewModel.swift in Sources */,
 				9C82BE1A2A1CC13A001C36C0 /* HoldemApp.swift in Sources */,

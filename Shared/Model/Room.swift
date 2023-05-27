@@ -10,15 +10,9 @@ import Foundation
 import Firebase
 import FirebaseFirestore
 
-enum RoomStatus: Codable {
-    case waiting
-    case gaming
-    case ended
-}
-
 struct Room: Codable {
     let roomId: String
-    var gameState: RoomStatus
+    var roomStatus: String
     var players: [String]
     
     func saveRoom(completion: @escaping () -> Void) {
@@ -34,5 +28,9 @@ struct Room: Codable {
         } catch {
             print("Failed to encode room data: \(error.localizedDescription)")
         }
+    }
+    
+    func getRoomField(roomId: String) {
+        
     }
 }

@@ -9,6 +9,7 @@ import SwiftUI
 import Firebase
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import CoreMedia
 
 class RoomViewModel: ObservableObject {
     @Published var showRoom: Bool = false
@@ -16,13 +17,15 @@ class RoomViewModel: ObservableObject {
     @Published var roomId: String = ""
     @Published var players: [Player] = []
     @Published var alert: Alert = Alert(title: Text("HI"))
+    
     func createRoom(player: Player) {
         self.roomId = generateRoomCode(length: 8)
-        searchDocument(collectionName: "player", fieldName: "account", target: player.account) { documentID in
-            let room = Room(roomId: self.roomId, gameState: RoomStatus.waiting, players: [documentID!])
+        searchDocument(collectionName: "player", fieldName: "account", target: player.account) { playerID in
+            let room = Room(roomId: self.roomId, roomStatus: "waiting", players: [playerID!])
             room.saveRoom() { [self] in
-                getPlayerData(documentID: documentID!) { player in
+                getPlayerData(playerID: playerID!) { player in
                     players.append(player!)
+                    print(players)
                     showRoom.toggle()
                 }
             }
@@ -43,34 +46,74 @@ class RoomViewModel: ObservableObject {
     }
     
     func joinRoom(player: Player, roomId: String) {
+        getPlayerInFirestore(roomId: roomId) {
+            print("Get player in firestore successfully.")
+            print(self.players)
+        }
         searchDocument(collectionName: "player", fieldName: "account", target: player.account) { playerID in
             searchDocument(collectionName: "room", fieldName: "roomId", target: roomId) { roomID in
                 guard let roomID = roomID else {
-                    self.showAlert = true
                     self.alert = Alert(
                         title: Text("Failed"),
                         message: Text("Room is not found"),
                         dismissButton: .default(Text("OK"))
                     )
+                    self.showAlert.toggle()
                     return
                 }
                 let roomRef = db.collection("room").document(roomID)
-                roomRef.updateData(["players": FieldValue.arrayUnion([playerID!])])
-                self.alert = Alert(
-                    title: Text("Success"),
-                    message: Text("Room is found"),
-                    dismissButton: .default(Text("OK")){
-                        self.showRoom.toggle()
+                roomRef.getDocument { (document, error) in
+                    guard let document = document, document.exists else {
+                        print("Document does not exist")
+                        return
                     }
-                )
-                self.showAlert.toggle()
+                    if let data = document.data(), let roomStatus = data["roomStatus"] as? String {
+                        switch roomStatus {
+                        case "waiting":
+                            roomRef.updateData(["players": FieldValue.arrayUnion([playerID!])])
+                            print("Room updated successfully!")
+                            self.getPlayerData(playerID: playerID!) { player in
+                                self.players.append(player!)
+                                self.roomId = roomId
+                                self.alert = Alert(
+                                    title: Text("Success"),
+                                    message: Text("Room is available"),
+                                    dismissButton: .default(Text("OK")) {
+                                        self.showRoom.toggle()
+                                    }
+                                )
+                                print(self.roomId)
+                                print(self.players)
+                                self.showAlert.toggle()
+                            }
+                        case "gaming":
+                            self.alert = Alert(
+                                title: Text("Failed"),
+                                message: Text("Game has started"),
+                                dismissButton: .default(Text("OK"))
+                            )
+                            self.showAlert.toggle()
+                        case "full":
+                            self.alert = Alert(
+                                title: Text("Failed"),
+                                message: Text("Room is full"),
+                                dismissButton: .default(Text("OK"))
+                            )
+                            self.showAlert.toggle()
+                        default:
+                            break
+                        }
+                    } else {
+                        print("Players field does not exist or is not of type [String]")
+                    }
+                }
             }
         }
     }
     
-    func getPlayerData(documentID: String, completion: @escaping (Player?) -> Void) {
-        let documentRef = db.collection("player").document(documentID)
-        documentRef.getDocument { snapshot, error in
+    func getPlayerData(playerID: String, completion: @escaping (Player?) -> Void) {
+        let playerRef = db.collection("player").document(playerID)
+        playerRef.getDocument { snapshot, error in
             if let error = error {
                 print("Error retrieving document: \(error.localizedDescription)")
                 completion(nil)
@@ -92,5 +135,31 @@ class RoomViewModel: ObservableObject {
             }
         }
     }
-
+    
+    func getPlayerInFirestore(roomId: String, completion: @escaping () -> Void) {
+        searchDocument(collectionName: "room", fieldName: "roomId", target: roomId) { roomID in
+            guard let roomID = roomID else { return }
+            let roomRef = db.collection("room").document(roomID)
+            roomRef.getDocument { document, error in
+                guard let document = document, document.exists else {
+                    print("Document does not exist")
+                    completion()
+                    return
+                }
+                
+                if let data = document.data(), let players = data["players"] as? [String] {
+                    for playerId in players {
+                        self.getPlayerData(playerID: playerId, completion: { player in
+                            guard let player = player else { return }
+                            self.players.append(player)
+                            completion()
+                        })
+                    }
+                } else {
+                    print("Players field does not exist or is not of type [String]")
+                    completion()
+                }
+            }
+        }
+    }
 }
