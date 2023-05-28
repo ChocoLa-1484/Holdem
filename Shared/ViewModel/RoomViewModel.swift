@@ -13,12 +13,10 @@ import FirebaseFirestoreSwift
 class RoomViewModel: ObservableObject {
     @Published var showRoom: Bool = false
     @Published var showAlert: Bool = false
-    @Published var roomID: String = ""
+    @Published var showGameView: Bool = false
     @Published var alert: Alert = Alert(title: Text("HI"))
-    
-    @Published var room: [Room] = []
-    @Published var players: [Player] = []
-    
+    @Published var rooms: [Room] = []
+
     func modifyRoom(room: Room) {
         do {
             try db.collection("rooms").document(room.id ?? "").setData(from: room)
@@ -27,145 +25,88 @@ class RoomViewModel: ObservableObject {
         }
     }
     
-    func addRoom(room: Room) {
+    func addRoom(room: Room, roomID: String) {
         do {
-            _ = try db.collection("rooms").addDocument(from: room)
+            _ = try db.collection("rooms").document(roomID).setData(from: room)
         } catch {
             print(error)
         }
     }
     
-    func deleteRoom(room: Room) {
-        let documentReference = db.collection("rooms").document(room.id ?? "")
+    func deleteRoom(roomID: String) {
+        let documentReference = db.collection("rooms").document(roomID)
         documentReference.delete()
     }
     
     func roomlistenChange() {
-        db.collection("rooms").addSnapshotListener { snapshot, error in
-            guard let snapshot = snapshot else { return }
-            snapshot.documentChanges.forEach { documentChange in
-                switch documentChange.type {
-                case .added:
-                    guard let room = try? documentChange.document.data(as: Room.self) else { break }
-                    self.rooms.append(room)
-                case .modified:
-                    guard let targetRoom = try? documentChange.document.data(as: Room.self) else { break }
-                    let index = self.rooms.firstIndex { room in
-                        room.id == targetRoom.id
-                    }
-                    if let index = index {
-                        self.rooms[index] = targetRoom
-                    }
-                case .removed:
-                    guard let targetRoom = try? documentChange.document.data(as: Room.self) else { break }
-                    let index = self.rooms.firstIndex { room in
-                        room.id == targetRoom.id
-                    }
-                    if let index = index {
-                        self.rooms.remove(at: index)
-                    
+        let roomID = UserManager.shared.getLoggedPlayer()?.roomID ?? ""
+        let documentRef = db.collection("rooms").document(roomID)
+        documentRef.addSnapshotListener { snapshot, error in
+            guard let snapshot = snapshot else {
+                print("Error fetching room document: \(error?.localizedDescription ?? "Unknown error")")
+                return
+            }
+            
+            guard let roomData = snapshot.data() else {
+                print("Room document data is nil")
+                return
+            }
+            
+            // 解析房间数据为 Room 对象，你需要根据你的数据模型进行调整
+            if let room = try? Firestore.Decoder().decode(Room.self, from: roomData) {
+                print("Room:", room)
+                if room.roomStatus == "gaming" {
+                    let deck = Deck()
+                    let deckData = try? Firestore.Encoder().encode(deck)
+                    db.collection("rooms").document(roomID).updateData(["deck": deckData!])
+                    self.showGameView = true
+                }
+                for playerID in room.players {
+                    let playerRef = db.collection("players").document(playerID)
+                    playerRef.getDocument { snapshot, error in
+                        guard let snapshot = snapshot else {
+                            print("Error fetching player document: \(error?.localizedDescription ?? "Unknown error")")
+                            return
+                        }
+                        
+                        guard let playerData = snapshot.data() else {
+                            print("Player document data is nil")
+                            return
+                        }
+                        
+                        // 解析玩家数据为 Player 对象，你需要根据你的数据模型进行调整
+                        if let player = try? Firestore.Decoder().decode(Player.self, from: playerData) {
+                            print("Player:", player)
+                        } else {
+                            print("Failed to decode player data")
+                        }
                     }
                 }
+            } else {
+                print("Failed to decode room data")
             }
         }
     }
-    func modifyPlayer(player: Player) {
+    
+    func modifyPlayer() {
+        let player = UserManager.shared.getLoggedPlayer()!
         do {
-            try db.collection("rooms").document(self.roomID).collection("players").document(player.id ?? "").setData(from: player)
+            try db.collection("players").document(player.id ?? "").setData(from: player)
         } catch  {
             print(error)
         }
     }
     
-    func addPlayer(player: Player) {
-        do {
-            _ = try db.collection("rooms").document(self.roomID).collection("players").addDocument(from: player)
-        } catch {
-            print(error)
-        }
-    }
-    
-    func deletePlayer(player: Player) {
-        let documentReference = db.collection("rooms").document(self.roomID).collection("players").document(player.id ?? "")
-        documentReference.delete()
-    }
-    
-    func fetchPlayer(){
-        let playerRef = db.collection("rooms").document(roomID).collection("players")
-        playerRef.getDocuments { snapshot, error in
-            guard let snapshot = snapshot else {
-                print("Error fetching subcollection documents: \(error?.localizedDescription ?? "")")
-                return
-            }
-            
-            for document in snapshot.documents {
-                guard let player = try? document.data(as: Player.self) else { break }
-                self.players.append(player)
-            }
-        }
-    }
-    
-    func playerlistenChange() {
-        db.collection("rooms").document(self.roomID).collection("players").addSnapshotListener { snapshot, error in
-            guard let snapshot = snapshot else { return }
-            snapshot.documentChanges.forEach { documentChange in
-                switch documentChange.type {
-                case .added:
-                    guard let player = try? documentChange.document.data(as: Player.self) else { break }
-                    self.players.append(player)
-                case .modified:
-                    guard let targetPlayer = try? documentChange.document.data(as: Player.self) else { break }
-                    let index = self.players.firstIndex { player in
-                        player.id == targetPlayer.id
-                    }
-                    if let index = index {
-                        self.players[index] = targetPlayer
-                    }
-                case .removed:
-                    guard let targetPlayer = try? documentChange.document.data(as: Player.self) else { break }
-                    let index = self.players.firstIndex { player in
-                        player.id == targetPlayer.id
-                    }
-                    if let index = index {
-                        self.players.remove(at: index)
-
-                    }
-                }
-            }
-        }
-    }
-    /*
-    func saveRoom(completion: @escaping () -> Void) {
-        let roomData: [String: Any] = [
-            "roomID": self.roomID,
-            "roomStatus": self.roomStatus
-        ]
-        let roomRef = db.collection("rooms").document()
-        roomRef.setData(roomData)
-        let roomId = roomRef.documentID
-        for player in players {
-            do {
-                let playerRef = db.collection("rooms").document(roomId).collection("players")
-                let _ = try playerRef.addDocument(from: player) { error in
-                    if let error = error {
-                        print("Failed to store player data: \(error.localizedDescription)")
-                    } else {
-                        print("Player data stored successfully")
-                    }
-                }
-            } catch {
-                print("Failed to encode player data: \(error.localizedDescription)")
-            }
-        }
-    }
-     */
-    
-    func createRoom(player: Player) {
-        self.roomID = generateRoomCode(length: 8)
-        let room = Room(roomID: self.roomID, roomStatus: "waiting", players: [player])
-        addRoom(room: room)
-        addPlayer(player: player)
-        self.showRoom.toggle()
+    func createRoom() {
+        let roomID = generateRoomCode(length: 8)
+        let room = Room(roomStatus: "waiting", players: [UserManager.shared.getLoggedPlayer()!.id ?? ""])
+        var player = UserManager.shared.getLoggedPlayer()!
+        player.roomID = roomID
+        player.host = true
+        UserManager.shared.setLoggedPlayer(player)
+        modifyPlayer()
+        addRoom(room: room, roomID: roomID)
+        self.showRoom = true
     }
     
     func generateRoomCode(length: Int) -> String {
@@ -181,32 +122,36 @@ class RoomViewModel: ObservableObject {
         return randomCode
     }
     
-    func joinRoom(player: Player, roomID: String) {
-        @FirestoreQuery(collectionPath: "rooms", predicates: [
-            .isEqualTo("roomID", roomID)
-        ]) var rooms: [Room]
-    
-        if rooms.isEmpty {
-            self.alert = Alert(
-                title: Text("Failed"),
-                message: Text("Room is not found"),
-                dismissButton: .default(Text("OK"))
-            )
-            self.showAlert.toggle()
-            return
-        }
-        
-        for room in rooms {
-            switch room.roomStatus {
+    func joinRoom(roomID: String) {
+        let roomRef = db.collection("rooms").document(roomID)
+        roomRef.getDocument { (snapshot, error) in
+            if let error = error {
+                print("Error fetching room document: \(error)")
+                return
+            }
+           
+            guard let roomData = snapshot?.data() else {
+                self.alert = Alert(
+                    title: Text("Failed"),
+                    message: Text("Room is not found"),
+                    dismissButton: .default(Text("OK"))
+                )
+                self.showAlert.toggle()
+                return
+            }
+            
+            switch roomData["roomStatus"] as! String? {
             case "waiting":
-                self.roomID = roomID
-                fetchPlayer()
-                addPlayer(player: player)
+                roomRef.updateData(["players": FieldValue.arrayUnion([UserManager.shared.getLoggedPlayer()!.id ?? ""])])
+                var player = UserManager.shared.getLoggedPlayer()!
+                player.roomID = roomID
+                UserManager.shared.setLoggedPlayer(player)
+                self.modifyPlayer()
                 self.alert = Alert(
                     title: Text("Success"),
                     message: Text("Room is available"),
                     dismissButton: .default(Text("OK")) {
-                        self.showRoom.toggle()
+                        self.showRoom = true
                     }
                 )
                 self.showAlert.toggle()
@@ -226,18 +171,94 @@ class RoomViewModel: ObservableObject {
                 self.showAlert.toggle()
             default:
                 break
-            }
+            }      
         }
     }
     
-    func exitRoom(player: Player) {
+    func exitRoom() {
+        var player = UserManager.shared.getLoggedPlayer()!
+        let roomID = UserManager.shared.getLoggedPlayer()?.roomID ?? ""
+        player.roomID = nil
+        player.host = false
         
-        if player.host {
-            deleteRoom(room: self)
-            self.roomID = ""
-            self.players = ""
+        if UserManager.shared.getLoggedPlayer()!.host {
+            deleteAllPlayer(roomID: roomID) {
+                self.deleteRoom(roomID: roomID)
+                UserManager.shared.setLoggedPlayer(player)
+                self.modifyPlayer()
+            }
+        } else {
+            deletePlayerFromRoom(playerID: UserManager.shared.getLoggedPlayer()?.id ?? "", roomID: roomID)
+            modifyPlayer()
         }
-        
+    }
+    
+    func deleteAllPlayer(roomID: String, completion: @escaping () -> Void) {
+        let roomRef = db.collection("rooms").document(roomID)
+        roomRef.getDocument { snapshot, error in
+            guard let snapshot = snapshot else { return }
+            
+            if snapshot.exists {
+                guard let roomData = snapshot.data(),
+                      let players = roomData["players"] as? [String] else {
+                    return
+                }
+                for playerID in players {
+                    let playerRef = db.collection("players").document(playerID)
+                    playerRef.getDocument { snapshot, error in
+                        guard let snapshot = snapshot else { return }
+                        
+                        if snapshot.exists {
+                            playerRef.updateData(["roomID": FieldValue.delete()]) { error in
+                                if let error = error {
+                                    print("Error updating roomID for player \(playerID): \(error)")
+                                } else {
+                                    print("roomID set to nil for player \(playerID) successfully")
+                                }
+                            }
+                        } else {
+                            print("Player document does not exist")
+                        }
+                    }
+                    self.deletePlayerFromRoom(playerID: playerID, roomID: roomID)
+                    completion()
+                }
+            } else {
+                print("Room document does not exist")
+            }
+        }
+    }
+
+    
+    func deletePlayerFromRoom(playerID: String, roomID: String) {
+        let roomRef = db.collection("rooms").document(roomID)
+        // 刪除rooms collection下players
+        roomRef.updateData([
+            "players": FieldValue.arrayRemove([playerID])
+        ]) { error in
+            if let error = error {
+                print("Error deleting player from room: \(error)")
+            } else {
+                print("Player deleted from room successfully")
+            }
+        }
+        // 刪除players collection下的roomID
+        db.collection("players").document(playerID).getDocument { snapshot, error in
+            guard let snapshot = snapshot else { return }
+            
+            if snapshot.exists {
+                let playerRef = snapshot.reference
+                playerRef.updateData(["roomID": FieldValue.delete()]) { error in
+                    if let error = error {
+                        print("Error updating roomID: \(error)")
+                    } else {
+                        print("roomID set to nil successfully")
+                    }
+                }
+            } else {
+                print("Player document does not exist")
+            }
+        }
     }
 }
 

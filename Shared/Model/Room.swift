@@ -12,8 +12,8 @@ import FirebaseFirestoreSwift
 
 struct Room: Codable, Identifiable {
     @DocumentID var id: String?
-    let roomID: String
     var roomStatus: String
-    var players: [Player]
+    var players: [String]
+    var deck: Deck?
 }
 

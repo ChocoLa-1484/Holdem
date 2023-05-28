@@ -1,13 +1,13 @@
 //
-//  playerBlock.swift
+//  gameBloack.swift
 //  Holdem (iOS)
 //
-//  Created by 楊乃諺 on 2023/5/27.
+//  Created by 楊乃諺 on 2023/5/28.
 //
 
 import SwiftUI
 
-struct playerBlock: View {
+struct gameBlock: View {
     let player: Player
     var body: some View {
         VStack {
@@ -16,18 +16,17 @@ struct playerBlock: View {
                 Text("$ \(player.money)")
             }
             VStack {
-                /*
-                ForEach (player.handCard?) { card in
+                ForEach (player.handCard ?? []) { card in
                     CardView(card: card)
-                }*/
+                }
             }
         }
     }
 }
 /*
-struct playerBlock_Previews: PreviewProvider {
+struct gameBloack_Previews: PreviewProvider {
     static var previews: some View {
-        playerBlock(player:)
+        gameBloack()
     }
 }
 */

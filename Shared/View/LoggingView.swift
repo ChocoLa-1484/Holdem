@@ -10,19 +10,11 @@ import SwiftUI
 struct LoggingView: View {
     @State private var account: String = ""
     @State private var password: String = ""
-    @StateObject private var loggingViewModel = LoggingViewModel()
+    @ObservedObject var loggingViewModel: LoggingViewModel
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
-        ZStack(alignment: .topLeading) {
-            Button(action: {
-                presentationMode.wrappedValue.dismiss()
-            }) {
-                Image(systemName: "x.circle")
-                    .font(.title)
-                    .foregroundColor(.red)
-                    .padding()
-            }
+        NavigationView {
             VStack {
                 TextField("Account", text: $account)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -47,14 +39,26 @@ struct LoggingView: View {
             .alert(isPresented: $loggingViewModel.showAlert, content: {
                 loggingViewModel.alert
             })
+            .navigationBarItems(leading: backButton)
             .padding()
+            
+        }
+    }
+    
+    private var backButton: some View {
+        Button(action: {
+            self.presentationMode.wrappedValue.dismiss()
+        }) {
+            Image(systemName: "chevron.left")
+                .imageScale(.large)
         }
     }
 }
-
+// 未登入中
+/*
 struct LoggingView_Previews: PreviewProvider {
     static var previews: some View {
         LoggingView()
     }
 }
-
+*/

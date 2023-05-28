@@ -7,36 +7,79 @@
 
 import SwiftUI
 import GameKit
+import FirebaseFirestoreSwift
 
 struct RoomView: View {
     @ObservedObject var roomViewModel: RoomViewModel
     @Environment(\.presentationMode) var presentationMode
+    @FirestoreQuery(collectionPath: "players", predicates: [
+        .isEqualTo("roomID", UserManager.shared.getLoggedPlayer()!.roomID ?? "")
+    ]) var players: [Player]
+    @State private var showAlert: Bool = false
     var body: some View {
-        ZStack(alignment: .topLeading) {
-            Button(action: {
-                presentationMode.wrappedValue.dismiss()
-            }) {
-                Image(systemName: "x.circle")
-                    .font(.title)
-                    .foregroundColor(.red)
-                    .padding()
-            }
-            HStack{
-                Text("\(roomViewModel.roomID)")
-                    .font(.title)
-                    .bold()
-                Spacer()
-                Spacer()
-            }
+        NavigationView{
             VStack{
-                ForEach (roomViewModel.players) { player in
-                    playerBlock(player: player)
+                VStack{
+                    Text("\(UserManager.shared.getLoggedPlayer()!.roomID ?? "")")
+                        .font(.title)
+                        .bold()
+                }
+                HStack{
+                    ForEach (players) { player in
+                        playerBlock(player: player)
+                    }
                 }
             }
+            .navigationBarItems(leading: backButton, trailing: startButton)
+            .alert(isPresented: $showAlert) {
+                Alert(
+                    title: Text("Empty Room"),
+                    message: Text("Host left"),
+                    dismissButton: .default(Text("OK")) {
+                        self.presentationMode.wrappedValue.dismiss()
+                    }
+                )
+            }
+            .onAppear(perform: {
+                roomViewModel.roomlistenChange()
+            })
+            .onChange(of: players) { updatedPlayers in
+                if updatedPlayers.isEmpty {
+                    showAlert = true
+                }
+            }
+            .fullScreenCover(isPresented: $roomViewModel.showGameView, content: {
+                GameView()
+            })
         }
-        .onAppear(perform: {
-            
-        })
+    }
+    
+    private var backButton: some View {
+        Button(action: {
+            self.roomViewModel.exitRoom()
+            self.presentationMode.wrappedValue.dismiss()
+        }) {
+            Image(systemName: "chevron.left")
+                .imageScale(.large)
+        }
+    }
+    
+    private var startButton: some View {
+        Button(action: {
+            startGame()
+        }) {
+            Text("Start")
+                .font(.title)
+                .bold()
+        }
+        .disabled(!UserManager.shared.getLoggedPlayer()!.host)
+        .opacity(UserManager.shared.getLoggedPlayer()!.host ? 1 : 0)
+    }
+    
+    private func startGame() {
+        let roomID = UserManager.shared.getLoggedPlayer()!.roomID!
+        let documentRef = db.collection("rooms").document(roomID)
+        documentRef.updateData(["roomStatus": "gaming"])
     }
 }
 /*

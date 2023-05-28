@@ -11,7 +11,6 @@ import FirebaseFirestoreSwift
 class RegisterViewModel: ObservableObject {
     @Published var showAlert: Bool = false
     @Published var alert: Alert = Alert(title: Text("HI"))
-    
     func register(account: String, password: String, passwordConfirm: String, name: String, presentationMode: Binding<PresentationMode>) {
         
         guard password == passwordConfirm else {
@@ -36,30 +35,75 @@ class RegisterViewModel: ObservableObject {
             }
             print("No duplicate account")
             let player = Player(account: account, password: password, name: name, money: 1000000, host: false)
-            player.savePlayer() { [self] in
-                alert = Alert(
+            addPlayer(player: player) {
+                self.alert = Alert(
                     title: Text("Success."),
                     message: Text("Account registered successfully."),
                     dismissButton: .default(Text("OK")) {
                         presentationMode.wrappedValue.dismiss()
                     }
                 )
-                showAlert.toggle()
+                self.showAlert.toggle()
             }
         })
     }
     
     func isAccountDuplicated(account: String, completion: @escaping (Bool) -> Void){
-        @FirestoreQuery(collectionPath: "accounts", predicates: [
-                .isEqualTo("account", account)
-        ]) var players: [Player]
-        
-        if players.isEmpty {
-            print("Account and password are not found.")
-            completion(false)
-        } else {
-            print("Account is duplicated")
-            completion(true)
+        db.collection("players").whereField("account", isEqualTo: account).getDocuments { (snapshot, error) in
+            if let error = error {
+                print("Error fetching documents: \(error)")
+                completion(false)
+                return
+            }
+            
+            guard let documents = snapshot?.documents else {
+                completion(false)
+                return
+            }
+            if documents.isEmpty {
+                print("Account and password are not found.")
+                completion(false)
+            } else {
+                print("Account is duplicated")
+                completion(true)
+            }
         }
     }
+    
+    func modifyPlayer(player: Player) {
+        do {
+            try db.collection("players").document(player.id ?? "").setData(from: player)
+        } catch  {
+            print(error)
+        }
+    }
+    
+    func addPlayer(player: Player, completion: @escaping () -> Void) {
+        do {
+            _ = try db.collection("players").addDocument(from: player)
+            completion()
+        } catch {
+            print(error)
+        }
+    }
+    
+    func deletePlayer(player: Player) {
+        let documentReference = db.collection("players").document(player.id ?? "")
+        documentReference.delete()
+    }
+    /*
+    func fetchPlayer(){
+        let playerRef = db.collection("players")
+        playerRef.getDocuments { snapshot, error in
+            guard let snapshot = snapshot else {
+                print("Error fetching subcollection documents: \(error?.localizedDescription ?? "")")
+                return
+            }
+            
+            for document in snapshot.documents {
+                guard let player = try? document.data(as: Player.self) else { break }
+                self.players.append(player)
+            }
+        }
+    }*/
 }

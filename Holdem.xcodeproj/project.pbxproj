@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C48C26A2A233A87009D64A4 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C48C2692A233A87009D64A4 /* UserManager.swift */; };
+		9C48C26C2A238DC7009D64A4 /* gameBloack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C48C26B2A238DC6009D64A4 /* gameBloack.swift */; };
 		9C82BE1A2A1CC13A001C36C0 /* HoldemApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BDF22A1CC139001C36C0 /* HoldemApp.swift */; };
 		9C82BE1E2A1CC13A001C36C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C82BDF42A1CC13A001C36C0 /* Assets.xcassets */; };
 		9C82BE312A1CC221001C36C0 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BE302A1CC221001C36C0 /* Card.swift */; };
@@ -27,14 +29,14 @@
 		9C82BE592A1E6191001C36C0 /* RoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BE582A1E6191001C36C0 /* RoomView.swift */; };
 		9C82BE5B2A1E61A0001C36C0 /* JoinRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BE5A2A1E61A0001C36C0 /* JoinRoomView.swift */; };
 		9C82BE5D2A1FAFA8001C36C0 /* RoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BE5C2A1FAFA8001C36C0 /* RoomViewModel.swift */; };
-		9C82BE642A1FC6E8001C36C0 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BE632A1FC6E8001C36C0 /* UserManager.swift */; };
 		9CBAE1702A20C72F0048D945 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBAE16F2A20C72F0048D945 /* GameViewModel.swift */; };
 		9CBAE1C42A20CCD80048D945 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBAE1C32A20CCD80048D945 /* GameView.swift */; };
 		9CBAE1C62A21CF6C0048D945 /* playerBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBAE1C52A21CF6C0048D945 /* playerBlock.swift */; };
-		9CDE0FE32A229446002C4CAB /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDE0FE22A229446002C4CAB /* PlayerViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9C48C2692A233A87009D64A4 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		9C48C26B2A238DC6009D64A4 /* gameBloack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gameBloack.swift; sourceTree = "<group>"; };
 		9C82BDF22A1CC139001C36C0 /* HoldemApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoldemApp.swift; sourceTree = "<group>"; };
 		9C82BDF42A1CC13A001C36C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9C82BDF92A1CC13A001C36C0 /* Holdem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Holdem.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -53,11 +55,9 @@
 		9C82BE582A1E6191001C36C0 /* RoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomView.swift; sourceTree = "<group>"; };
 		9C82BE5A2A1E61A0001C36C0 /* JoinRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinRoomView.swift; sourceTree = "<group>"; };
 		9C82BE5C2A1FAFA8001C36C0 /* RoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewModel.swift; sourceTree = "<group>"; };
-		9C82BE632A1FC6E8001C36C0 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		9CBAE16F2A20C72F0048D945 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		9CBAE1C32A20CCD80048D945 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		9CBAE1C52A21CF6C0048D945 /* playerBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = playerBlock.swift; sourceTree = "<group>"; };
-		9CDE0FE22A229446002C4CAB /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +74,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9C48C2682A233A76009D64A4 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				9C48C2692A233A87009D64A4 /* UserManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
 		9C82BDEC2A1CC139001C36C0 = {
 			isa = PBXGroup;
 			children = (
@@ -85,7 +93,7 @@
 		9C82BDF12A1CC139001C36C0 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				9C82BE622A1FC6D4001C36C0 /* Manager */,
+				9C48C2682A233A76009D64A4 /* Manager */,
 				9C82BE452A1CFD89001C36C0 /* Model */,
 				9C82BE442A1CFC80001C36C0 /* View */,
 				9C82BE432A1CFC6F001C36C0 /* ViewModel */,
@@ -110,7 +118,6 @@
 				9C82BE562A1E3A26001C36C0 /* LoggingViewModel.swift */,
 				9C82BE5C2A1FAFA8001C36C0 /* RoomViewModel.swift */,
 				9CBAE16F2A20C72F0048D945 /* GameViewModel.swift */,
-				9CDE0FE22A229446002C4CAB /* PlayerViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -127,6 +134,7 @@
 				9C82BE5A2A1E61A0001C36C0 /* JoinRoomView.swift */,
 				9CBAE1C32A20CCD80048D945 /* GameView.swift */,
 				9CBAE1C52A21CF6C0048D945 /* playerBlock.swift */,
+				9C48C26B2A238DC6009D64A4 /* gameBloack.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -141,14 +149,6 @@
 				9C82BE4A2A1D0FD7001C36C0 /* Room.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		9C82BE622A1FC6D4001C36C0 /* Manager */ = {
-			isa = PBXGroup;
-			children = (
-				9C82BE632A1FC6E8001C36C0 /* UserManager.swift */,
-			);
-			path = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,10 +230,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CBAE1702A20C72F0048D945 /* GameViewModel.swift in Sources */,
-				9CDE0FE32A229446002C4CAB /* PlayerViewModel.swift in Sources */,
 				9C82BE422A1CF11C001C36C0 /* CardView.swift in Sources */,
 				9C82BE5B2A1E61A0001C36C0 /* JoinRoomView.swift in Sources */,
-				9C82BE642A1FC6E8001C36C0 /* UserManager.swift in Sources */,
 				9CBAE1C42A20CCD80048D945 /* GameView.swift in Sources */,
 				9C82BE512A1D10C1001C36C0 /* RegisterView.swift in Sources */,
 				9C82BE4D2A1D0FED001C36C0 /* StartView.swift in Sources */,
@@ -248,6 +246,8 @@
 				9C82BE5D2A1FAFA8001C36C0 /* RoomViewModel.swift in Sources */,
 				9C82BE1A2A1CC13A001C36C0 /* HoldemApp.swift in Sources */,
 				9C82BE552A1E3A0A001C36C0 /* LoggingView.swift in Sources */,
+				9C48C26C2A238DC7009D64A4 /* gameBloack.swift in Sources */,
+				9C48C26A2A233A87009D64A4 /* UserManager.swift in Sources */,
 				9C82BE492A1D0FC7001C36C0 /* Player.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -15,16 +15,7 @@ struct RegisterView: View {
     @StateObject private var registerViewModel = RegisterViewModel()
     @Environment(\.presentationMode) var presentationMode
     var body: some View {
-        ZStack(alignment: .topLeading) {
-            Button(action: {
-                presentationMode.wrappedValue.dismiss()
-            }) {
-                Image(systemName: "x.circle")
-                    .font(.title)
-                    .foregroundColor(.red)
-                    .padding()
-            }
-            .frame(alignment: .topLeading)
+        NavigationView {
             VStack {
                 TextField("Account", text: $account)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -57,13 +48,20 @@ struct RegisterView: View {
             .alert(isPresented: $registerViewModel.showAlert, content: {
                 registerViewModel.alert
             })
+            .navigationBarItems(leading: backButton)
             .padding()
         }
-        
+    }
+    
+    private var backButton: some View {
+        Button(action: {
+            self.presentationMode.wrappedValue.dismiss()
+        }) {
+            Image(systemName: "chevron.left")
+                .imageScale(.large)
+        }
     }
 }
-// Bug：點太快
-// alert寫法
 /*
 struct RegisterView_Previews: PreviewProvider {
     static var previews: some View {

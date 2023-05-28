@@ -9,42 +9,49 @@ import SwiftUI
 
 struct JoinRoomView: View {
     @Environment(\.presentationMode) var presentationMode
-    @State private var roomId: String = ""
+    @State private var roomID: String = ""
     @ObservedObject var roomViewModel: RoomViewModel
     var body: some View {
-        ZStack(alignment: .topLeading) {
-            Button(action: {
-                presentationMode.wrappedValue.dismiss()
-            }) {
-                Image(systemName: "x.circle")
-                    .font(.title)
-                    .foregroundColor(.red)
-                    .padding()
-            }
-            VStack {
-                TextField("Room ID", text: $roomId)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
-                
-                Button {
-                    roomViewModel.joinRoom(player: UserManager.shared.loggedPlayer!, roomId: roomId)
-                } label: {
-                    Text("Submit")
-                        .font(.headline)
-                        .foregroundColor(.white)
+        NavigationView {
+            ZStack(alignment: .topLeading) {
+                VStack {
+                    TextField("Room ID", text: $roomID)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding()
-                        .background(Color.blue)
-                        .cornerRadius(10)
+                    
+                    Button {
+                        roomViewModel.joinRoom(roomID: roomID)
+                    } label: {
+                        Text("Submit")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .padding()
+                            .background(Color.blue)
+                            .cornerRadius(10)
+                    }
+                    .padding()
                 }
                 .padding()
             }
-            .padding()
+            .navigationBarItems(leading: backButton)
+            .navigationViewStyle(StackNavigationViewStyle())
+            .background(
+                NavigationLink(destination: RoomView(roomViewModel: roomViewModel), isActive: $roomViewModel.showRoom) {
+                    EmptyView()
+                }
+            )
+            .alert(isPresented: $roomViewModel.showAlert, content: {
+                roomViewModel.alert
+            })
         }
-        .alert(isPresented: $roomViewModel.showAlert, content: {
-            roomViewModel.alert
-        })
-        .fullScreenCover(isPresented: $roomViewModel.showRoom) {
-            RoomView(roomViewModel: roomViewModel)
+    }
+    
+    private var backButton: some View {
+        Button(action: {
+            self.presentationMode.wrappedValue.dismiss()
+        }) {
+            Image(systemName: "chevron.left")
+                .imageScale(.large)
         }
     }
 }

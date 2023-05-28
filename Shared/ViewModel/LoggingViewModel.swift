@@ -7,11 +7,20 @@
 
 import SwiftUI
 import FirebaseFirestoreSwift
+import Combine
 
 class LoggingViewModel: ObservableObject {
+    private var cancellables = Set<AnyCancellable>()
     @Published var showAlert: Bool = false
     @Published var alert: Alert = Alert(title: Text("HI"))
-    @Published var loggedPlayer: Player?
+    @Published var isLogged: Bool = false
+    
+    init() {
+        UserManager.shared.observeIsLogged { [weak self] isLogged in
+            self?.isLogged = isLogged
+        }
+    }
+    
     func logging(account: String, password: String, presentationMode: Binding<PresentationMode>) {
         // 构建查询条件
         isAccountExisted(account: account) { [self] isExisted in
@@ -28,54 +37,94 @@ class LoggingViewModel: ObservableObject {
                 guard isCorrect else {
                     alert = Alert(
                         title: Text("Failed."),
-                        message: Text("The password is wrong."),
+                        message: Text("Password is wrong."),
                         dismissButton: .default(Text("OK"))
                     )
                     showAlert.toggle()
                     return
                 }
+                
                 alert = Alert(
                     title: Text("Success"),
                     message: Text("Sign in Susscessfully."),
                     dismissButton: .default(Text("OK")) {
-                        UserManager.shared.loggedPlayer = loggedPlayer!
                         presentationMode.wrappedValue.dismiss()
                     }
                 )
-                print("Player \(loggedPlayer!.name) logged in")
                 showAlert.toggle()
             }
         }
     }
     
     func isAccountExisted(account: String, completion: @escaping (Bool) -> Void){
-        @FirestoreQuery(collectionPath: "accounts", predicates: [
-                .isEqualTo("account", account)
-        ]) var players: [Player]
-        print(players)
-        if players.isEmpty {
-            print("No documents found in the collection.")
-            completion(false)
-        } else {
-            print("Account exist.")
-            completion(true)
+        db.collection("players").whereField("account", isEqualTo: account).getDocuments { (snapshot, error) in
+            if let error = error {
+                print("Error fetching documents: \(error)")
+                completion(false)
+                return
+            }
+            
+            guard let documents = snapshot?.documents else {
+                completion(false)
+                return
+            }
+            if documents.isEmpty {
+                print("Account is not found.")
+                completion(false)
+            } else {
+                print("Account is found")
+                completion(true)
+            }
         }
     }
     
     func isAccountCorrect(account: String, password: String, completion: @escaping (Bool) -> Void){
-        @FirestoreQuery(collectionPath: "accounts", predicates: [
-                .isEqualTo("account", account)
-        ]) var players: [Player]
-        
-        for player in players {
-            if player.password == password {
-                print("Sign in suceesfully.")
-                print(player.id!)
-                completion(true)
-            } else {
-                print("Password is wrong.")
+        db.collection("players")
+            .whereField("account", isEqualTo: account)
+            .whereField("password", isEqualTo: password).getDocuments { (snapshot, error) in
+            if let error = error {
+                print("Error fetching documents: \(error)")
                 completion(false)
+                return
+            }
+            
+            guard let documents = snapshot?.documents else {
+                completion(false)
+                return
+            }
+            if documents.isEmpty {
+                print("Password is wrong")
+                completion(false)
+            } else {
+                print("Password is correct")
+                guard var player = try? documents[0].data(as: Player.self) else {
+                    print("Can't transform data")
+                    completion(false)
+                    return
+                }
+                player.handCard = nil
+                player.roomID = nil
+                player.bet = nil
+                player.number = nil
+                player.host = false
+                UserManager.shared.setLoggedPlayer(player)
+                self.modifyPlayer()
+                print("UserManager.shared.loggedPlayer:", UserManager.shared.getLoggedPlayer() ?? "")
+                completion(true)
             }
         }
+    }
+    
+    func modifyPlayer() {
+        let player = UserManager.shared.getLoggedPlayer()!
+        do {
+            try db.collection("players").document(player.id ?? "").setData(from: player)
+        } catch  {
+            print(error)
+        }
+    }
+    
+    func logout() {
+        UserManager.shared.clearLoggedPlayer()
     }
 }

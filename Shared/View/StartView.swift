@@ -12,7 +12,7 @@ struct StartView: View {
     @State var isShowingLoggingView: Bool = false
     @State var isShowingJoinRoomView: Bool = false
     @ObservedObject var roomViewModel = RoomViewModel()
-    @State var isLogged: Bool = false
+    @ObservedObject var loggingViewModel = LoggingViewModel()
     
     fileprivate func buttonLabel(text: String) -> some View {
         return Text(text)
@@ -25,40 +25,45 @@ struct StartView: View {
     
     var body: some View {
         ZStack {
-            ZStack{
+            VStack {
+                Button {
+                    roomViewModel.createRoom()
+                } label: {
+                    buttonLabel(text: "Create Room")
+                }
+                .opacity(loggingViewModel.isLogged ? 1 : 0)
+                .disabled(!loggingViewModel.isLogged)
+                Button {
+                    isShowingJoinRoomView.toggle()
+                } label: {
+                    buttonLabel(text: "Join Room")
+                }
+                .opacity(loggingViewModel.isLogged ? 1 : 0)
+                .disabled(!loggingViewModel.isLogged)
+            }
+            .overlay(
                 Rectangle()
-                    .frame(width: 150, height: 150, alignment: .topLeading)
+                    .frame(width: 130, height: 130, alignment: .topLeading)
                     .foregroundColor(Color.pink)
                     .overlay(
                         VStack{
-                            Text(UserManager.shared.loggedPlayer?.name ?? "")
-                            Text("\(UserManager.shared.loggedPlayer?.money ?? 0)")
+                            Text(UserManager.shared.getLoggedPlayer()?.name ?? "")
+                            Text("\(UserManager.shared.getLoggedPlayer()?.money ?? 0)")
+                            Button {
+                                loggingViewModel.logout()
+                            } label: {
+                                buttonLabel(text: "Log out")
+                            }
                         }
                     )
-                    .opacity(isLogged ? 1 : 0)
-                    .offset(x: -100, y: -100)
-                VStack {
-                    Button {
-                        roomViewModel.createRoom(player: UserManager.shared.loggedPlayer!)
-                    } label: {
-                        buttonLabel(text: "Create Room")
-                    }
-                    .opacity(isLogged ? 1 : 0)
-                    .disabled(!isLogged)
-                    Button {
-                        isShowingJoinRoomView.toggle()
-                    } label: {
-                        buttonLabel(text: "Join Room")
-                    }
-                    .opacity(isLogged ? 1 : 0)
-                    .disabled(!isLogged)
-                }
-                .fullScreenCover(isPresented: $roomViewModel.showRoom) {
-                    RoomView(roomViewModel: roomViewModel)
-                }
-                .fullScreenCover(isPresented: $isShowingJoinRoomView) {
-                    JoinRoomView(roomViewModel: roomViewModel)
-                }
+                .opacity(loggingViewModel.isLogged ? 1 : 0)
+                .offset(x: -200, y: -100)
+            )
+            .fullScreenCover(isPresented: $roomViewModel.showRoom) {
+                RoomView(roomViewModel: roomViewModel)
+            }
+            .fullScreenCover(isPresented: $isShowingJoinRoomView) {
+                JoinRoomView(roomViewModel: roomViewModel)
             }
             VStack {
                 Button {
@@ -66,24 +71,21 @@ struct StartView: View {
                 } label: {
                     buttonLabel(text: "Sign Up")
                 }
-                .opacity(isLogged ? 0 : 1)
-                .disabled(isLogged)
+                .opacity(loggingViewModel.isLogged ? 0 : 1)
+                .disabled(loggingViewModel.isLogged)
                 Button {
                     isShowingLoggingView.toggle()
                 } label: {
                     buttonLabel(text: "Sign In")
                 }
-                .opacity(isLogged ? 0 : 1)
-                .disabled(isLogged)
+                .opacity(loggingViewModel.isLogged ? 0 : 1)
+                .disabled(loggingViewModel.isLogged)
             }
             .fullScreenCover(isPresented: $isShowingRegisterView) {
                 RegisterView()
             }
             .fullScreenCover(isPresented: $isShowingLoggingView) {
-                LoggingView()
-                    .onDisappear {
-                        isLogged = UserManager.shared.loggedPlayer != nil
-                    }
+                LoggingView(loggingViewModel: loggingViewModel)
             }
         }
     }

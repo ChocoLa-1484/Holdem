@@ -11,7 +11,7 @@ import Firebase
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-struct Player: Codable, Identifiable {
+struct Player: Codable, Identifiable, Equatable {
     @DocumentID var id: String?
     
     let account: String
@@ -20,9 +20,12 @@ struct Player: Codable, Identifiable {
     var money: Int
     var host: Bool
     
+    var number: Int?
     var roomID: String?
     var handCard: [Card]?
     var bet: Int?
+    
+    /*
     func savePlayer(completion: @escaping () -> Void) {
         do {
             try db.collection("accounts").document().setData(from: self) { error in
@@ -60,7 +63,7 @@ struct Player: Codable, Identifiable {
            }
        }
     }
-    
+    */
 }
 
 
