@@ -34,7 +34,7 @@ class RegisterViewModel: ObservableObject {
                 return
             }
             print("No duplicate account")
-            let player = Player(account: account, password: password, name: name, money: 1000000, host: false)
+            let player = Player(account: account, password: password, name: name, money: 1000000, host: false, online: false, ready: false)
             addPlayer(player: player) {
                 self.alert = Alert(
                     title: Text("Success."),
@@ -50,12 +50,6 @@ class RegisterViewModel: ObservableObject {
     
     func isAccountDuplicated(account: String, completion: @escaping (Bool) -> Void){
         db.collection("players").whereField("account", isEqualTo: account).getDocuments { (snapshot, error) in
-            if let error = error {
-                print("Error fetching documents: \(error)")
-                completion(false)
-                return
-            }
-            
             guard let documents = snapshot?.documents else {
                 completion(false)
                 return
@@ -67,14 +61,6 @@ class RegisterViewModel: ObservableObject {
                 print("Account is duplicated")
                 completion(true)
             }
-        }
-    }
-    
-    func modifyPlayer(player: Player) {
-        do {
-            try db.collection("players").document(player.id ?? "").setData(from: player)
-        } catch  {
-            print(error)
         }
     }
     
@@ -91,19 +77,4 @@ class RegisterViewModel: ObservableObject {
         let documentReference = db.collection("players").document(player.id ?? "")
         documentReference.delete()
     }
-    /*
-    func fetchPlayer(){
-        let playerRef = db.collection("players")
-        playerRef.getDocuments { snapshot, error in
-            guard let snapshot = snapshot else {
-                print("Error fetching subcollection documents: \(error?.localizedDescription ?? "")")
-                return
-            }
-            
-            for document in snapshot.documents {
-                guard let player = try? document.data(as: Player.self) else { break }
-                self.players.append(player)
-            }
-        }
-    }*/
 }

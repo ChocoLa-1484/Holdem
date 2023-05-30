@@ -9,8 +9,8 @@ import SwiftUI
 import Foundation
 import FirebaseFirestoreSwift
 
-struct Deck: Codable, Identifiable {
-    @DocumentID var id: String?
+struct Deck: Codable{
+    //@DocumentID var id: String?
     var cards: [Card] = []
     
     init() {
@@ -33,19 +33,4 @@ struct Deck: Codable, Identifiable {
             return nil
         }
     }
-}
-
-func saveDeck(deck: Deck) {
-    let deckRef = db.collection("deck").document()
-    var cardsData: [[String: Int]] = []
-    for card in deck.cards {
-        let cardData: [String: Int] = [
-            "suit": card.suit.rawValue,
-            "rank": card.rank.rawValue
-        ]
-        cardsData.append(cardData)
-    }
-    deckRef.setData([
-        "cards": cardsData
-    ])
 }

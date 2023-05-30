@@ -107,9 +107,10 @@ class LoggingViewModel: ObservableObject {
                 player.bet = nil
                 player.number = nil
                 player.host = false
+                player.online = true
                 UserManager.shared.setLoggedPlayer(player)
-                self.modifyPlayer()
                 print("UserManager.shared.loggedPlayer:", UserManager.shared.getLoggedPlayer() ?? "")
+                self.modifyPlayer()
                 completion(true)
             }
         }

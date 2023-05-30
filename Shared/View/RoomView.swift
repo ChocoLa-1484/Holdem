@@ -26,11 +26,17 @@ struct RoomView: View {
                 }
                 HStack{
                     ForEach (players) { player in
-                        playerBlock(player: player)
+                        playerBlock(player: player, roomViewModel: roomViewModel)
                     }
                 }
             }
             .navigationBarItems(leading: backButton, trailing: startButton)
+            .navigationViewStyle(StackNavigationViewStyle())
+            .background(
+                NavigationLink(destination: GameView(), isActive: $roomViewModel.showGameView) {
+                    EmptyView()
+                }
+            )
             .alert(isPresented: $showAlert) {
                 Alert(
                     title: Text("Empty Room"),
@@ -48,9 +54,6 @@ struct RoomView: View {
                     showAlert = true
                 }
             }
-            .fullScreenCover(isPresented: $roomViewModel.showGameView, content: {
-                GameView()
-            })
         }
     }
     
@@ -66,7 +69,7 @@ struct RoomView: View {
     
     private var startButton: some View {
         Button(action: {
-            startGame()
+            self.roomViewModel.startGame()
         }) {
             Text("Start")
                 .font(.title)
@@ -75,12 +78,7 @@ struct RoomView: View {
         .disabled(!UserManager.shared.getLoggedPlayer()!.host)
         .opacity(UserManager.shared.getLoggedPlayer()!.host ? 1 : 0)
     }
-    
-    private func startGame() {
-        let roomID = UserManager.shared.getLoggedPlayer()!.roomID!
-        let documentRef = db.collection("rooms").document(roomID)
-        documentRef.updateData(["roomStatus": "gaming"])
-    }
+    // update roomStatus
 }
 /*
 struct RoomView_Previews: PreviewProvider {

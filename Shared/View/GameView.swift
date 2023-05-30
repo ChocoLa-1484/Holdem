@@ -19,11 +19,12 @@ struct GameView: View {
     var body: some View {
         NavigationView{
             VStack{
+                /*
                 VStack{
                     Text("\(UserManager.shared.getLoggedPlayer()!.roomID ?? "")")
                         .font(.title)
                         .bold()
-                }
+                }*/
                 HStack{
                     ForEach (players) { player in
                         gameBlock(player: player)
@@ -32,6 +33,7 @@ struct GameView: View {
             }
             .overlay(
                 Text("Round \(gameViewModel.round)")
+                    .frame(width: 80, alignment: .center)
                     .font(.headline)
                     .foregroundColor(.white)
                     .padding()
@@ -45,7 +47,6 @@ struct GameView: View {
             .onAppear(perform: {
                 gameViewModel.startGame()
                 //gameViewModel.gamelistenChange()
-                
             })
             .onReceive(gameViewModel.$round) { newValue in
                 isShowingRound = true
