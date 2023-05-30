@@ -80,20 +80,8 @@ class GameViewModel: ObservableObject {
             }*/
             
             guard let snapshot = snapshot, snapshot.exists else { return }
-            guard let roomData = snapshot.data() else { return }
-            print("dealOneCard: \(roomData["deck"] ??  "HI")")
-            let cardsData = roomData["deck"] as? [[String: Any]]
-            print("dealOneCard: \(cardsData ?? [])")
-            var cards: [Card] = []
-            for cardData in cardsData ?? [] {
-                if let suitRawValue = cardData["suit"] as? Int,
-                   let rankRawValue = cardData["rank"] as? Int,
-                   let suit = Card.Suit(rawValue: suitRawValue),
-                   let rank = Card.Rank(rawValue: rankRawValue) {
-                    let card = Card(suit: suit, rank: rank)
-                    cards.append(card)
-                }
-            }
+            let room = try? snapshot.data(as: Room.self)
+            var cards: [Card] = room?.deck?.cards ?? []
             print("dealOneCard: \(cards)")
             if cards.isEmpty {
                 print("No Cards")

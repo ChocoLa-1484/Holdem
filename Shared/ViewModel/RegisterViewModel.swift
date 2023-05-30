@@ -43,6 +43,7 @@ class RegisterViewModel: ObservableObject {
                         presentationMode.wrappedValue.dismiss()
                     }
                 )
+                print("Account registered successfully")
                 self.showAlert.toggle()
             }
         })
@@ -65,12 +66,8 @@ class RegisterViewModel: ObservableObject {
     }
     
     func addPlayer(player: Player, completion: @escaping () -> Void) {
-        do {
-            _ = try db.collection("players").addDocument(from: player)
-            completion()
-        } catch {
-            print(error)
-        }
+        _ = try? db.collection("players").addDocument(from: player)
+        completion()
     }
     
     func deletePlayer(player: Player) {
