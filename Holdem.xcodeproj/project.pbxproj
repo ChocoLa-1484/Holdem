@@ -13,7 +13,6 @@
 		9C82BE1E2A1CC13A001C36C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C82BDF42A1CC13A001C36C0 /* Assets.xcassets */; };
 		9C82BE312A1CC221001C36C0 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BE302A1CC221001C36C0 /* Card.swift */; };
 		9C82BE332A1CC241001C36C0 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C82BE322A1CC241001C36C0 /* Deck.swift */; };
-		9C82BE352A1CC691001C36C0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C82BE342A1CC691001C36C0 /* GoogleService-Info.plist */; };
 		9C82BE382A1CCBB5001C36C0 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 9C82BE372A1CCBB5001C36C0 /* FirebaseAuth */; };
 		9C82BE3A2A1CCBB5001C36C0 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 9C82BE392A1CCBB5001C36C0 /* FirebaseFirestoreSwift-Beta */; };
 		9C82BE3C2A1CCBB5001C36C0 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 9C82BE3B2A1CCBB5001C36C0 /* FirebaseStorage */; };
@@ -32,6 +31,7 @@
 		9CBAE1702A20C72F0048D945 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBAE16F2A20C72F0048D945 /* GameViewModel.swift */; };
 		9CBAE1C42A20CCD80048D945 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBAE1C32A20CCD80048D945 /* GameView.swift */; };
 		9CBAE1C62A21CF6C0048D945 /* playerBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBAE1C52A21CF6C0048D945 /* playerBlock.swift */; };
+		9CC559BB2A27095600999C7D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9CC559BA2A27095600999C7D /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,7 +42,6 @@
 		9C82BDF92A1CC13A001C36C0 /* Holdem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Holdem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C82BE302A1CC221001C36C0 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		9C82BE322A1CC241001C36C0 /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
-		9C82BE342A1CC691001C36C0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9C82BE412A1CF11C001C36C0 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		9C82BE462A1D0F8A001C36C0 /* FirestoreFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreFunction.swift; sourceTree = "<group>"; };
 		9C82BE482A1D0FC7001C36C0 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
@@ -58,6 +57,7 @@
 		9CBAE16F2A20C72F0048D945 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		9CBAE1C32A20CCD80048D945 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		9CBAE1C52A21CF6C0048D945 /* playerBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = playerBlock.swift; sourceTree = "<group>"; };
+		9CC559BA2A27095600999C7D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,11 +93,11 @@
 		9C82BDF12A1CC139001C36C0 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				9CC559BA2A27095600999C7D /* GoogleService-Info.plist */,
 				9C48C2682A233A76009D64A4 /* Manager */,
 				9C82BE452A1CFD89001C36C0 /* Model */,
 				9C82BE442A1CFC80001C36C0 /* View */,
 				9C82BE432A1CFC6F001C36C0 /* ViewModel */,
-				9C82BE342A1CC691001C36C0 /* GoogleService-Info.plist */,
 				9C82BDF42A1CC13A001C36C0 /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -218,7 +218,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C82BE1E2A1CC13A001C36C0 /* Assets.xcassets in Resources */,
-				9C82BE352A1CC691001C36C0 /* GoogleService-Info.plist in Resources */,
+				9CC559BB2A27095600999C7D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

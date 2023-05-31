@@ -16,41 +16,41 @@ class RoomViewModel: ObservableObject {
     @Published var showGameView: Bool = false
     @Published var alert: Alert = Alert(title: Text("HI"))
     
-    func addRoom(room: Room, roomID: String) {
+    func addRoom(room: Room, roomID: String, completion: @escaping () -> Void) {
         do {
             _ = try db.collection("rooms").document(roomID).setData(from: room)
-            print("Create Room Successfully")
+            print("addRoom Successfully")
+            completion()
         } catch {
-            print(error)
+            print("addRoom Failed")
+            completion()
         }
     }
     
     func deleteRoom(roomID: String) {
-        let documentReference = db.collection("rooms").document(roomID)
-        documentReference.delete()
+        let roomRef = db.collection("rooms").document(roomID)
+        roomRef.delete()
+        print("deleteRoom Successfully")
     }
     
     func roomlistenChange() {
         let roomID = UserManager.shared.getLoggedPlayer()?.roomID ?? ""
         let documentRef = db.collection("rooms").document(roomID)
         documentRef.addSnapshotListener { snapshot, error in
-            guard let snapshot = snapshot, snapshot.exists else { return }
-            
-            // 解析房间数据为 Room 对象，你需要根据你的数据模型进行调整
-            if let roomData = try? snapshot.data(as: Room.self) {
-                if roomData.roomStatus == "gaming" {
-                    let deck = Deck()
-                    let deckData = try? Firestore.Encoder().encode(deck)
-                    db.collection("rooms").document(roomID).updateData(["deck": deckData!])
+            guard let snapshot = snapshot, snapshot.exists, var room = try? snapshot.data(as: Room.self) else { return }
+            if room.roomStatus == "gaming" {
+                room.deck = Deck()
+                do {
+                    try db.collection("rooms").document(roomID).setData(from: room)
                     self.showGameView = true
+                } catch {
+                    print(error)
                 }
-            } else {
-                print("Failed to decode room data")
             }
         }
     }
     
-    func modifyPlayer() {
+    func modifyPlayer(completion: @escaping () -> Void) {
         let player = UserManager.shared.getLoggedPlayer()!
         do {
             try db.collection("players").document(player.id ?? "").setData(from: player)
@@ -66,9 +66,11 @@ class RoomViewModel: ObservableObject {
         player.roomID = roomID
         player.host = true
         UserManager.shared.setLoggedPlayer(player)
-        self.addRoom(room: room, roomID: roomID)
-        self.showRoom = true
-        self.modifyPlayer()
+        self.addRoom(room: room, roomID: roomID) {
+            self.modifyPlayer() {
+                self.showRoom = true
+            }
+        }
     }
     
     func generateRoomCode(length: Int) -> String {
@@ -87,9 +89,7 @@ class RoomViewModel: ObservableObject {
     func joinRoom(roomID: String) {
         let roomRef = db.collection("rooms").document(roomID)
         roomRef.getDocument { (snapshot, error) in
-            guard let snapshot = snapshot else { return }
-           
-            guard let roomData = snapshot.data() else {
+            guard let snapshot = snapshot, snapshot.exists, var room = try? snapshot.data(as: Room.self) else {
                 self.alert = Alert(
                     title: Text("Failed"),
                     message: Text("Room is not found"),
@@ -97,16 +97,21 @@ class RoomViewModel: ObservableObject {
                 )
                 self.showAlert.toggle()
                 return
+                
             }
-            
-            switch roomData["roomStatus"] as! String? {
+    
+            switch room.roomStatus {
             case "waiting":
-                roomRef.updateData(["players": FieldValue.arrayUnion([UserManager.shared.getLoggedPlayer()!.id ?? ""])])
+                room.players.append(UserManager.shared.getLoggedPlayer()!.id ?? "Error")
+                do {
+                    try roomRef.setData(from: room)
+                } catch {
+                    print("Error")
+                }
                 var player = UserManager.shared.getLoggedPlayer()!
                 player.roomID = roomID
                 UserManager.shared.setLoggedPlayer(player)
-                DispatchQueue.main.async {
-                    self.modifyPlayer()
+                self.modifyPlayer() {
                     self.alert = Alert(
                         title: Text("Success"),
                         message: Text("Room is available"),
@@ -146,11 +151,11 @@ class RoomViewModel: ObservableObject {
             deleteAllPlayer(roomID: roomID) {
                 self.deleteRoom(roomID: roomID)
                 UserManager.shared.setLoggedPlayer(player)
-                self.modifyPlayer()
+                self.modifyPlayer() {}
             }
         } else {
             deletePlayerFromRoom(playerID: UserManager.shared.getLoggedPlayer()?.id ?? "", roomID: roomID)
-            modifyPlayer()
+            modifyPlayer() {}
         }
     }
     

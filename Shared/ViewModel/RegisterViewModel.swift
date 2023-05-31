@@ -66,12 +66,8 @@ class RegisterViewModel: ObservableObject {
     }
     
     func addPlayer(player: Player, completion: @escaping () -> Void) {
-        _ = try? db.collection("players").addDocument(from: player)
+        let playerRef = try? db.collection("players").addDocument(from: player)
+        print(playerRef?.documentID ?? "00000000")
         completion()
-    }
-    
-    func deletePlayer(player: Player) {
-        let documentReference = db.collection("players").document(player.id ?? "")
-        documentReference.delete()
     }
 }

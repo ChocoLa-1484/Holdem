@@ -107,25 +107,39 @@ class LoggingViewModel: ObservableObject {
                 player.bet = nil
                 player.number = nil
                 player.host = false
+                player.ready = false
                 player.online = true
                 UserManager.shared.setLoggedPlayer(player)
-                print("UserManager.shared.loggedPlayer:", UserManager.shared.getLoggedPlayer() ?? "")
-                self.modifyPlayer()
-                completion(true)
+                self.modifyPlayer() {
+                    completion(true)
+                }
             }
         }
     }
     
-    func modifyPlayer() {
+    func modifyPlayer(completion: @escaping () -> Void) {
         let player = UserManager.shared.getLoggedPlayer()!
         do {
             try db.collection("players").document(player.id ?? "").setData(from: player)
+            print(player)
+            completion()
         } catch  {
             print(error)
+            completion()
         }
     }
     
     func logout() {
-        UserManager.shared.clearLoggedPlayer()
+        var player = UserManager.shared.getLoggedPlayer()!
+        player.handCard = nil
+        player.roomID = nil
+        player.bet = nil
+        player.number = nil
+        player.host = false
+        player.ready = false
+        player.online = true
+        modifyPlayer() {
+            UserManager.shared.clearLoggedPlayer()
+        }
     }
 }

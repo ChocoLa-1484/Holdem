@@ -2,22 +2,18 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CLIENT_ID</key>
-	<string>823066985260-bdmiaebnnsfkih0ov11u1r23jl5kgkqh.apps.googleusercontent.com</string>
-	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.823066985260-bdmiaebnnsfkih0ov11u1r23jl5kgkqh</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDww5qsr641CmbUXLfaiyEnEv-I5QAdbSk</string>
+	<string>AIzaSyB4oKvSAaNwi72sD0hITLKNF0UNmAUURm0</string>
 	<key>GCM_SENDER_ID</key>
-	<string>823066985260</string>
+	<string>408509343550</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.leo.endhw</string>
+	<string>com.leo.Holdem</string>
 	<key>PROJECT_ID</key>
-	<string>ios-end-hw</string>
+	<string>holdem-c5956</string>
 	<key>STORAGE_BUCKET</key>
-	<string>ios-end-hw.appspot.com</string>
+	<string>holdem-c5956.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:823066985260:ios:461bbc76e07b3f7f21e289</string>
+	<string>1:408509343550:ios:f203533e77daeec53c2e6f</string>
 </dict>
 </plist>
