@@ -14,6 +14,7 @@ class RoomViewModel: ObservableObject {
     @Published var showRoom: Bool = false
     @Published var showAlert: Bool = false
     @Published var showGameView: Bool = false
+    @Published var showNotReady: Bool = false
     @Published var alert: Alert = Alert(title: Text("HI"))
     
     func addRoom(room: Room, roomID: String, completion: @escaping () -> Void) {
@@ -33,27 +34,11 @@ class RoomViewModel: ObservableObject {
         print("deleteRoom Successfully")
     }
     
-    func roomlistenChange() {
-        let roomID = UserManager.shared.getLoggedPlayer()?.roomID ?? ""
-        let documentRef = db.collection("rooms").document(roomID)
-        documentRef.addSnapshotListener { snapshot, error in
-            guard let snapshot = snapshot, snapshot.exists, var room = try? snapshot.data(as: Room.self) else { return }
-            if room.roomStatus == "gaming" {
-                room.deck = Deck()
-                do {
-                    try db.collection("rooms").document(roomID).setData(from: room)
-                    self.showGameView = true
-                } catch {
-                    print(error)
-                }
-            }
-        }
-    }
-    
     func modifyPlayer(completion: @escaping () -> Void) {
         let player = UserManager.shared.getLoggedPlayer()!
         do {
             try db.collection("players").document(player.id ?? "").setData(from: player)
+            completion()
         } catch  {
             print(error)
         }
@@ -67,7 +52,9 @@ class RoomViewModel: ObservableObject {
         player.host = true
         UserManager.shared.setLoggedPlayer(player)
         self.addRoom(room: room, roomID: roomID) {
+            print("createRoom addRoom")
             self.modifyPlayer() {
+                print("createRoom modifyPlayer")
                 self.showRoom = true
             }
         }
@@ -86,6 +73,21 @@ class RoomViewModel: ObservableObject {
         return randomCode
     }
     
+    func roomListener() {
+        let roomID = UserManager.shared.getLoggedPlayer()?.roomID ?? ""
+        let roomRef = db.collection("rooms").document(roomID)
+        
+        var listener: ListenerRegistration?
+        listener = roomRef.addSnapshotListener { snapshot, error in
+            guard let snapshot = snapshot, snapshot.exists, let room = try? snapshot.data(as: Room.self) else { return }
+            if room.roomStatus == "gaming" {
+                self.showGameView = true
+                print("showGameView \(self.showGameView)")
+                listener?.remove()
+            }
+        }
+    }
+    
     func joinRoom(roomID: String) {
         let roomRef = db.collection("rooms").document(roomID)
         roomRef.getDocument { (snapshot, error) in
@@ -97,7 +99,6 @@ class RoomViewModel: ObservableObject {
                 )
                 self.showAlert.toggle()
                 return
-                
             }
     
             switch room.roomStatus {
@@ -146,7 +147,7 @@ class RoomViewModel: ObservableObject {
         let roomID = UserManager.shared.getLoggedPlayer()?.roomID ?? ""
         player.roomID = nil
         player.host = false
-        
+        self.showGameView = false
         if UserManager.shared.getLoggedPlayer()!.host {
             deleteAllPlayer(roomID: roomID) {
                 self.deleteRoom(roomID: roomID)
@@ -193,7 +194,6 @@ class RoomViewModel: ObservableObject {
     
     func deletePlayerFromRoom(playerID: String, roomID: String) {
         let roomRef = db.collection("rooms").document(roomID)
-        // 刪除rooms collection下players
         roomRef.updateData(["players": FieldValue.arrayRemove([playerID])]) { error in
             if let error = error {
                 print("Error deleting player from room: \(error)")
@@ -201,7 +201,6 @@ class RoomViewModel: ObservableObject {
                 print("Player deleted from room successfully")
             }
         }
-        // 刪除players collection下的roomID
         db.collection("players").document(playerID).getDocument { snapshot, error in
             guard let snapshot = snapshot, snapshot.exists else { return }
             let playerRef = snapshot.reference
@@ -219,7 +218,24 @@ class RoomViewModel: ObservableObject {
         let roomID = UserManager.shared.getLoggedPlayer()!.roomID!
         let roomRef = db.collection("rooms").document(roomID)
         checkReady { isReady in
-            roomRef.updateData(["roomStatus": "gaming"])
+            if isReady {
+                roomRef.getDocument{ snapshot, error in
+                    guard let snapshot = snapshot, snapshot.exists, var room = try? snapshot.data(as: Room.self) else { return }
+                    room.roomStatus = "gaming"
+                    room.deck = Deck()
+                    try? roomRef.setData(from: room) { error in
+                        self.showGameView = true
+                    }
+                }
+            } else {
+                self.alert = Alert(
+                    title: Text("Failed"),
+                    message: Text("Room is not found"),
+                    dismissButton: .default(Text("OK"))
+                )
+                self.showNotReady = true
+                print("showNotReady = \(self.showNotReady)")
+            }
         }
     }
     
@@ -227,15 +243,9 @@ class RoomViewModel: ObservableObject {
         let playerID = UserManager.shared.getLoggedPlayer()!.id ?? ""
         let playerRef = db.collection("players").document(playerID)
         playerRef.getDocument { snapshot, error in
-            guard let snapshot = snapshot, snapshot.exists else { return }
-
-            do {
-                var player = try snapshot.data(as: Player.self)
-                player.ready = !player.ready
-                try playerRef.setData(from: player)
-            } catch {
-                print("Error decoding player data: \(error.localizedDescription)")
-            }
+            guard let snapshot = snapshot, snapshot.exists, var player = try? snapshot.data(as: Player.self) else { return }
+            player.ready = !player.ready
+            try? playerRef.setData(from: player)
         }
     }
     
@@ -247,30 +257,35 @@ class RoomViewModel: ObservableObject {
                 completion(false)
                 return
             }
-            guard let roomData = try? snapshot.data(as: Room.self) else {
+            guard let room = try? snapshot.data(as: Room.self) else {
                 print("Can't transform")
+                completion(false)
                 return
             }
-            for playerID in roomData.players {
+            
+            let dispatchGroup = DispatchGroup()
+            var allReady = true
+            
+            for playerID in room.players {
+                dispatchGroup.enter()
                 let playerRef = db.collection("players").document(playerID)
                 playerRef.getDocument { snapshot, error in
-                    guard let snapshot = snapshot, snapshot.exists else {
-                        completion(false)
-                        return
+                    defer {
+                        dispatchGroup.leave()
                     }
-                    guard let playerData = try? snapshot.data(as: Player.self) else {
-                        completion(false)
-                        return
+                    guard let snapshot = snapshot, snapshot.exists else { return }
+                    guard let player = try? snapshot.data(as: Player.self) else { return }
+                    if !player.ready {
+                        allReady = false
                     }
-                    if playerData.ready == false {
-                        completion(false)
-                        return
-                    }
-                    completion(true)
                 }
+            }
+            dispatchGroup.notify(queue: .main) {
+                completion(allReady)
             }
         }
     }
+
 }
 
 // Firestore Query fetchPlayer

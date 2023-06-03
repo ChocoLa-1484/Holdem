@@ -26,9 +26,10 @@ struct RoomView: View {
                 }
                 HStack{
                     ForEach (players) { player in
-                        playerBlock(player: player, roomViewModel: roomViewModel)
+                        playerBlock(player: player)
                     }
                 }
+                readyButton
             }
             .navigationBarItems(leading: backButton, trailing: startButton)
             .navigationViewStyle(StackNavigationViewStyle())
@@ -37,6 +38,9 @@ struct RoomView: View {
                     EmptyView()
                 }
             )
+            .alert(isPresented: $roomViewModel.showNotReady, content: {
+                roomViewModel.alert
+            })
             .alert(isPresented: $showAlert) {
                 Alert(
                     title: Text("Empty Room"),
@@ -47,7 +51,7 @@ struct RoomView: View {
                 )
             }
             .onAppear(perform: {
-                roomViewModel.roomlistenChange()
+                roomViewModel.roomListener()
             })
             .onChange(of: players) { updatedPlayers in
                 if updatedPlayers.isEmpty {
@@ -60,6 +64,7 @@ struct RoomView: View {
     private var backButton: some View {
         Button(action: {
             self.roomViewModel.exitRoom()
+            roomViewModel.showGameView = false
             self.presentationMode.wrappedValue.dismiss()
         }) {
             Image(systemName: "chevron.left")
@@ -78,7 +83,19 @@ struct RoomView: View {
         .disabled(!UserManager.shared.getLoggedPlayer()!.host)
         .opacity(UserManager.shared.getLoggedPlayer()!.host ? 1 : 0)
     }
-    // update roomStatus
+    
+    private var readyButton: some View {
+        Button(action: {
+            self.roomViewModel.getReady()
+        }) {
+            Text("Get Ready")
+                .font(.headline)
+                .foregroundColor(.white)
+                .padding()
+                .background(Color.black)
+                .cornerRadius(10)
+        }
+    }
 }
 /*
 struct RoomView_Previews: PreviewProvider {

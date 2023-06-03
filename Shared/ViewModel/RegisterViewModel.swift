@@ -23,19 +23,19 @@ class RegisterViewModel: ObservableObject {
             return
         }
         
-        isAccountDuplicated(account: account, completion: { [self] isDuplicated in
+        isAccountDuplicated(account: account, completion: { isDuplicated in
             if isDuplicated {
-                alert = Alert(
+                self.alert = Alert(
                     title: Text("Failed."),
                     message: Text("Duplicated account."),
                     dismissButton: .default(Text("OK"))
                 )
-                showAlert.toggle()
+                self.showAlert.toggle()
                 return
             }
             print("No duplicate account")
             let player = Player(account: account, password: password, name: name, money: 1000000, host: false, online: false, ready: false)
-            addPlayer(player: player) {
+            self.addPlayer(player: player) {
                 self.alert = Alert(
                     title: Text("Success."),
                     message: Text("Account registered successfully."),

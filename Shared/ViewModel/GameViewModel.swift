@@ -16,115 +16,73 @@ class GameViewModel: ObservableObject {
     func startGame() {
         print("Start Game")
         self.roomID = UserManager.shared.getLoggedPlayer()?.roomID ?? ""
-        let documentRef = db.collection("rooms").document(roomID)
         round += 1
-        documentRef.addSnapshotListener { snapshot, error in
-            guard let snapshot = snapshot else { return }
-            guard let roomData = snapshot.data() else { return }
-            // 解析房间数据为 Room 对象，你需要根据你的数据模型进行调整
-            if let room = try? Firestore.Decoder().decode(Room.self, from: roomData) {
-                self.room = room
+        
+        let roomRef = db.collection("rooms").document(roomID)
+        roomRef.getDocument { snapshot, error in
+            guard let snapshot = snapshot, snapshot.exists, let room = try? snapshot.data(as: Room.self) else { return }
+            self.room = room
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                self.dealRound(now: 0, times: 2)
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-            self.dealCardsToPlayers()
-        }
-//        self.dealCardsToPlayers(index: 0, count: 0, target: 2)
     }
-    
-    func dealCardsToPlayers() {
-        for (index, playerID) in self.room.players.enumerated() {
-            debugPrint("Deal card to \(index), \(playerID)")
+    func dealRound(now: Int, times: Int) {
+        guard now < times else {
+            // 所有玩家都已經發牌完成
+            return
+        }
+        let dispatchGroup = DispatchGroup()
+        for playerID in self.room.players {
+            dispatchGroup.enter()
             self.dealOneCard(playerID: playerID) {
-                debugPrint("Deal card to \(index), \(playerID) successfully")
+                print("Deal card to \(playerID) successfully")
+                dispatchGroup.leave()
             }
         }
+        dispatchGroup.notify(queue: .main) {
+            print("Deal One Round finished")
+            self.dealRound(now: now + 1, times: times)
+        }
     }
-    
-    /*
-    func gamelistenChange() {
-        db.collection("rooms").document(roomID).addSnapshotListener { snapshot, error in
-            guard let snapshot = snapshot else {
-                print("Error fetching document: \(error!)")
+    func dealOneCard(playerID: String, completion: @escaping () -> Void) {
+        let roomID = UserManager.shared.getLoggedPlayer()?.roomID ?? ""
+        let roomRef = db.collection("rooms").document(roomID)
+        roomRef.getDocument { snapshot, error in
+            guard let snapshot = snapshot, snapshot.exists, var room = try? snapshot.data(as: Room.self) else {
+                completion()
                 return
             }
-            guard let roomData = snapshot.data() else {
-                print("Room document data is nil")
-                return
-            }
-            // 解析房间数据为 Room 对象，你需要根据你的数据模型进行调整
-            if let room = try? Firestore.Decoder().decode(Room.self, from: roomData) {
-                for playerID in room.players {
-                    let playerRef = db.collection("players").document(playerID)
-                    playerRef.addSnapshotListener { snapshot, error in
-                        guard let snapshot = snapshot else {
-                            print("Error fetching player document: \(error!)")
-                            return
-                        }
+            var deck: Deck = room.deck ?? Deck()
+            if deck.cards.isEmpty {
+                print("No Cards")
+                completion()
+            } else {
+                let card = deck.cards.removeFirst()
+                room.deck = deck
+                try? roomRef.setData(from: room) { error in
+                    self.addHandCard(playerID: playerID, card: card) {
+                        completion()
                     }
                 }
             }
         }
-    }*/
-    func dealOneCard(playerID: String, completion: @escaping () -> Void) {
-        let roomID = UserManager.shared.getLoggedPlayer()?.roomID ?? ""
-        let documentRef = db.collection("rooms").document(roomID)
-        documentRef.getDocument { snapshot, error in
-            /*
-            do {
-                if let deckData = try snapshot?.data(as: Deck.self) {
-                    print(deckData)
-                }
-            } catch {
-                print("failed")
-            }*/
-            
-            guard let snapshot = snapshot, snapshot.exists else { return }
-            let room = try? snapshot.data(as: Room.self)
-            var cards: [Card] = room?.deck?.cards ?? []
-            print("dealOneCard: \(cards)")
-            if cards.isEmpty {
-                print("No Cards")
-                completion()
-            } else {
-                let card = cards.removeFirst()
-                self.saveDeck(deck: cards)
-                self.addHandCard(playerID: playerID, card: card)
-                completion()
-            }
-            
-        }
-        
     }
     
-    func saveDeck(deck: [Card]) {
-        let deckRef = db.collection("rooms").document(roomID)
-        var cardsData: [[String: Int]] = []
-        for card in deck {
-            let cardData: [String: Int] = [
-                "suit": card.suit.rawValue,
-                "rank": card.rank.rawValue
-            ]
-            cardsData.append(cardData)
-        }
-        deckRef.setData(["cards": cardsData])
-    }
-    
-    func addHandCard(playerID: String, card: Card){
+    func addHandCard(playerID: String, card: Card, completion: @escaping () -> Void){
         let playerRef = db.collection("players").document(playerID)
         playerRef.getDocument { snapshot, error in
-            guard let snapshot = snapshot else { return }
-            guard let playerData = snapshot.data() else { return }
-            
-            if (playerData["handCard"] as? [Card]) != nil {
-                playerRef.updateData(["handCard": FieldValue.arrayUnion([card])])
-                print("PlayerID: \(playerID), Update Data \(card.suit) \(card.rank)")
-            } else {
-                playerRef.setData(["handCard": card])
-                print("PlayerID: \(playerID), Set Data \(card.suit) \(card.rank)")
+            guard let snapshot = snapshot, snapshot.exists, var player = try? snapshot.data(as: Player.self) else { return }
+            if player.handCard == nil {
+                player.handCard = []
+            }
+            player.handCard!.append(card)
+            try? playerRef.setData(from: player) { error in
+                completion()
             }
         }
     }
+    
     /*
     func dealCardsToPlayers(index: Int, count: Int, target: Int) {
         guard index < self.room!.players.count else {
@@ -184,11 +142,7 @@ class GameViewModel: ObservableObject {
     
     func modifyPlayer() {
         let player = UserManager.shared.getLoggedPlayer()!
-        do {
-            try db.collection("players").document(player.id ?? "").setData(from: player)
-        } catch  {
-            print(error)
-        }
+        try? db.collection("players").document(player.id ?? "").setData(from: player)
     }
     
     func deletePlayerFromGame(playerID: String, roomID: String) {

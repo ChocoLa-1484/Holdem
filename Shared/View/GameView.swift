@@ -19,15 +19,19 @@ struct GameView: View {
     var body: some View {
         NavigationView{
             VStack{
-                /*
                 VStack{
                     Text("\(UserManager.shared.getLoggedPlayer()!.roomID ?? "")")
                         .font(.title)
                         .bold()
-                }*/
+                }
                 HStack{
                     ForEach (players) { player in
                         gameBlock(player: player)
+                    }
+                    Button {
+                        print(players)
+                    } label: {
+                        Text("HI")
                     }
                 }
             }
@@ -44,9 +48,9 @@ struct GameView: View {
                     .transition(.opacity)
             )
             .navigationBarItems(leading: backButton)
+            .navigationViewStyle(StackNavigationViewStyle())
             .onAppear(perform: {
                 gameViewModel.startGame()
-                //gameViewModel.gamelistenChange()
             })
             .onReceive(gameViewModel.$round) { newValue in
                 isShowingRound = true
@@ -59,7 +63,6 @@ struct GameView: View {
     
     private var backButton: some View {
         Button(action: {
-            self.presentationMode.wrappedValue.dismiss()
             gameViewModel.exitGame()
         }) {
             Image(systemName: "chevron.left")

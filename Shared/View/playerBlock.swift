@@ -9,28 +9,22 @@ import SwiftUI
 
 struct playerBlock: View {
     let player: Player
-    @ObservedObject var roomViewModel: RoomViewModel
     var body: some View {
-        VStack {
+        HStack {
             VStack{
                 Text(player.name)
                 Text("$ \(player.money)")
-                readyButton
+                readyText
             }
         }
     }
-    private var readyButton: some View {
-        Button(action: {
-            self.roomViewModel.getReady()
-        }) {
-            Text("Ready")
-                .font(.headline)
-                .foregroundColor(.white)
-                .padding()
-                .background(Color.blue)
-                .cornerRadius(10)
-                .disabled(player.ready)
-        }
+    private var readyText: some View {
+        Text("Ready")
+            .font(.headline)
+            .foregroundColor(.white)
+            .padding()
+            .background(player.ready ? Color.blue : Color.gray)
+            .cornerRadius(10)
     }
 }
 /*

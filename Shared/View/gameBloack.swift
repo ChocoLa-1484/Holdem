@@ -15,7 +15,7 @@ struct gameBlock: View {
                 Text(player.name)
                 Text("$ \(player.money)")
             }
-            VStack {
+            HStack {
                 ForEach (player.handCard ?? []) { card in
                     CardView(card: card)
                 }
