@@ -11,11 +11,8 @@ import FirebaseFirestoreSwift
 struct GameView: View {
     @StateObject private var gameViewModel = GameViewModel()
     @Environment(\.presentationMode) var presentationMode
-    @FirestoreQuery(collectionPath: "players", predicates: [
-        .isEqualTo("roomID", UserManager.shared.getLoggedPlayer()!.roomID ?? "")
-    ]) var players: [Player]
     @State private var isShowingRound = false
-    
+    @State private var isShowingStart = false
     var body: some View {
         NavigationView{
             VStack{
@@ -25,13 +22,8 @@ struct GameView: View {
                         .bold()
                 }
                 HStack{
-                    ForEach (players) { player in
+                    ForEach (gameViewModel.players) { player in
                         gameBlock(player: player)
-                    }
-                    Button {
-                        print(players)
-                    } label: {
-                        Text("HI")
                     }
                 }
             }
@@ -48,9 +40,12 @@ struct GameView: View {
                     .transition(.opacity)
             )
             .navigationBarItems(leading: backButton)
-            .navigationViewStyle(StackNavigationViewStyle())
+            .fullScreenCover(isPresented: $isShowingStart, content: {
+                StartView()
+            })
             .onAppear(perform: {
                 gameViewModel.startGame()
+                gameViewModel.gameListener()
             })
             .onReceive(gameViewModel.$round) { newValue in
                 isShowingRound = true
@@ -64,6 +59,7 @@ struct GameView: View {
     private var backButton: some View {
         Button(action: {
             gameViewModel.exitGame()
+            isShowingStart = true
         }) {
             Image(systemName: "chevron.left")
                 .imageScale(.large)

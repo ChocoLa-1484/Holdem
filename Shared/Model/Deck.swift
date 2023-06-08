@@ -10,7 +10,6 @@ import Foundation
 import FirebaseFirestoreSwift
 
 struct Deck: Codable{
-    //@DocumentID var id: String?
     var cards: [Card] = []
     
     init() {

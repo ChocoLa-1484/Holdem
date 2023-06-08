@@ -15,7 +15,7 @@ class RoomViewModel: ObservableObject {
     @Published var showAlert: Bool = false
     @Published var showGameView: Bool = false
     @Published var showNotReady: Bool = false
-    @Published var alert: Alert = Alert(title: Text("HI"))
+    @Published var alert = Alert(title: Text("HI"))
     
     func addRoom(room: Room, roomID: String, completion: @escaping () -> Void) {
         do {
@@ -95,9 +95,11 @@ class RoomViewModel: ObservableObject {
                 self.alert = Alert(
                     title: Text("Failed"),
                     message: Text("Room is not found"),
-                    dismissButton: .default(Text("OK"))
+                    dismissButton: .default(Text("OK")) {
+                        self.showAlert = false
+                    }
                 )
-                self.showAlert.toggle()
+                self.showAlert = true
                 return
             }
     
@@ -117,25 +119,30 @@ class RoomViewModel: ObservableObject {
                         title: Text("Success"),
                         message: Text("Room is available"),
                         dismissButton: .default(Text("OK")) {
+                            self.showAlert = false
                             self.showRoom = true
                         }
                     )
-                    self.showAlert.toggle()
+                    self.showAlert = true
                 }
             case "gaming":
                 self.alert = Alert(
                     title: Text("Failed"),
                     message: Text("Game has started"),
-                    dismissButton: .default(Text("OK"))
+                    dismissButton: .default(Text("OK")) {
+                        self.showAlert = false
+                    }
                 )
-                self.showAlert.toggle()
+                self.showAlert = true
             case "full":
                 self.alert = Alert(
                     title: Text("Failed"),
                     message: Text("Room is full"),
-                    dismissButton: .default(Text("OK"))
+                    dismissButton: .default(Text("OK")) {
+                        self.showAlert = false
+                    }
                 )
-                self.showAlert.toggle()
+                self.showAlert = true
             default:
                 break
             }      
@@ -147,6 +154,7 @@ class RoomViewModel: ObservableObject {
         let roomID = UserManager.shared.getLoggedPlayer()?.roomID ?? ""
         player.roomID = nil
         player.host = false
+        player.handCard = nil
         self.showGameView = false
         if UserManager.shared.getLoggedPlayer()!.host {
             deleteAllPlayer(roomID: roomID) {
@@ -230,11 +238,12 @@ class RoomViewModel: ObservableObject {
             } else {
                 self.alert = Alert(
                     title: Text("Failed"),
-                    message: Text("Room is not found"),
-                    dismissButton: .default(Text("OK"))
+                    message: Text("Player are not all ready"),
+                    dismissButton: .default(Text("OK")) {
+                        self.showNotReady = false
+                    }
                 )
                 self.showNotReady = true
-                print("showNotReady = \(self.showNotReady)")
             }
         }
     }

@@ -15,7 +15,8 @@ struct RoomView: View {
     @FirestoreQuery(collectionPath: "players", predicates: [
         .isEqualTo("roomID", UserManager.shared.getLoggedPlayer()!.roomID ?? "")
     ]) var players: [Player]
-    @State private var showAlert: Bool = false
+    @State var showAlert: Bool = false
+    @State var alert = Alert(title: Text("HI"))
     var body: some View {
         NavigationView{
             VStack{
@@ -32,32 +33,35 @@ struct RoomView: View {
                 readyButton
             }
             .navigationBarItems(leading: backButton, trailing: startButton)
-            .navigationViewStyle(StackNavigationViewStyle())
-            .background(
-                NavigationLink(destination: GameView(), isActive: $roomViewModel.showGameView) {
-                    EmptyView()
-                }
-            )
-            .alert(isPresented: $roomViewModel.showNotReady, content: {
-                roomViewModel.alert
+            .fullScreenCover(isPresented: $roomViewModel.showGameView, content: {
+                GameView()
             })
             .alert(isPresented: $showAlert) {
-                Alert(
-                    title: Text("Empty Room"),
-                    message: Text("Host left"),
-                    dismissButton: .default(Text("OK")) {
-                        self.presentationMode.wrappedValue.dismiss()
-                    }
-                )
+                if roomViewModel.showNotReady {
+                    return roomViewModel.alert
+                } else {
+                    return alert
+                }
+            }
+            .onReceive(roomViewModel.$showNotReady) { showNotReady in
+                showAlert = showAlert || showNotReady
+            }
+            .onChange(of: players) { updatedPlayers in
+                if updatedPlayers.isEmpty {
+                    alert = Alert(
+                        title: Text("Empty Room"),
+                        message: Text("Host left"),
+                        dismissButton: .default(Text("OK")) {
+                            showAlert = false
+                            self.presentationMode.wrappedValue.dismiss()
+                        }
+                    )
+                    showAlert = true
+                }
             }
             .onAppear(perform: {
                 roomViewModel.roomListener()
             })
-            .onChange(of: players) { updatedPlayers in
-                if updatedPlayers.isEmpty {
-                    showAlert = true
-                }
-            }
         }
     }
     
